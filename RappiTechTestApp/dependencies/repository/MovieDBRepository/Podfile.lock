@@ -1,0 +1,23 @@
+PODS:
+  - Alamofire (4.8.2)
+  - MovieWebService (0.0.1):
+    - Alamofire (~> 4.8.2)
+
+DEPENDENCIES:
+  - MovieWebService (from `../../network/MovieWebService`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+
+EXTERNAL SOURCES:
+  MovieWebService:
+    :path: "../../network/MovieWebService"
+
+SPEC CHECKSUMS:
+  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
+  MovieWebService: 9bfc797240bf8d78c07c38a1e40fc9d1804e6d70
+
+PODFILE CHECKSUM: 2b2e81b720059a218e143b1624dbdf3e27d3fdb9
+
+COCOAPODS: 1.7.3
