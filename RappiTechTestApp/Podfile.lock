@@ -1,0 +1,16 @@
+PODS:
+  - MovieDBRepository (0.0.1)
+
+DEPENDENCIES:
+  - MovieDBRepository (from `dependencies/repository/MovieDBRepository`)
+
+EXTERNAL SOURCES:
+  MovieDBRepository:
+    :path: dependencies/repository/MovieDBRepository
+
+SPEC CHECKSUMS:
+  MovieDBRepository: 825251896d0bff25d45700d0508a5448f9586855
+
+PODFILE CHECKSUM: ce28065cae4bb6583c9e9c898426654ee7212b8a
+
+COCOAPODS: 1.7.3

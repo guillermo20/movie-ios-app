@@ -1,4 +1,4 @@
-# Uncomment the next line to define a global platform for your project
+
 platform :ios, '12.2'
 
 target 'MovieDBRepository' do
@@ -6,7 +6,8 @@ target 'MovieDBRepository' do
   use_frameworks!
 
   # Pods for MovieDBRepository
-  pod 'MovieWebService', :path => '../../network/MovieWebService'
+  pod 'MovieWebService',  :path => '../../network/MovieWebService'
+  pod 'MovieDataBase',    :path => '../../database/MovieDataBase'
 
   target 'MovieDBRepositoryTests' do
     inherit! :search_paths

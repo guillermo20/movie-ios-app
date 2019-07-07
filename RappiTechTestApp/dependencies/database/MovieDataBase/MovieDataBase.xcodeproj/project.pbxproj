@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		604723CB22D288670014047D /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604723CA22D288670014047D /* DataModel.swift */; };
 		607318CE22D18B2C00901F6A /* MovieDataBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 607318C422D18B2C00901F6A /* MovieDataBase.framework */; };
 		607318D322D18B2C00901F6A /* MovieDataBaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607318D222D18B2C00901F6A /* MovieDataBaseTests.swift */; };
 		607318D522D18B2C00901F6A /* MovieDataBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 607318C722D18B2C00901F6A /* MovieDataBase.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -23,6 +24,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		604723CA22D288670014047D /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		607318C422D18B2C00901F6A /* MovieDataBase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MovieDataBase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		607318C722D18B2C00901F6A /* MovieDataBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MovieDataBase.h; sourceTree = "<group>"; };
 		607318C822D18B2C00901F6A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -50,6 +52,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		604723C922D288470014047D /* API */ = {
+			isa = PBXGroup;
+			children = (
+				604723CA22D288670014047D /* DataModel.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
 		607318BA22D18B2C00901F6A = {
 			isa = PBXGroup;
 			children = (
@@ -71,6 +81,7 @@
 		607318C622D18B2C00901F6A /* MovieDataBase */ = {
 			isa = PBXGroup;
 			children = (
+				604723C922D288470014047D /* API */,
 				607318DE22D18B4300901F6A /* Model */,
 				607318C722D18B2C00901F6A /* MovieDataBase.h */,
 				607318C822D18B2C00901F6A /* Info.plist */,
@@ -156,6 +167,7 @@
 				TargetAttributes = {
 					607318C322D18B2C00901F6A = {
 						CreatedOnToolsVersion = 10.2.1;
+						LastSwiftMigration = 1020;
 					};
 					607318CC22D18B2C00901F6A = {
 						CreatedOnToolsVersion = 10.2.1;
@@ -202,6 +214,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				604723CB22D288670014047D /* DataModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -349,6 +362,7 @@
 		607318D922D18B2C00901F6A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -366,6 +380,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ggutierrez.MovieDataBase;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -374,6 +389,7 @@
 		607318DA22D18B2C00901F6A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -399,6 +415,7 @@
 		607318DC22D18B2C00901F6A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5H7UHHQYSS;
 				INFOPLIST_FILE = MovieDataBaseTests/Info.plist;
@@ -417,6 +434,7 @@
 		607318DD22D18B2C00901F6A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5H7UHHQYSS;
 				INFOPLIST_FILE = MovieDataBaseTests/Info.plist;
