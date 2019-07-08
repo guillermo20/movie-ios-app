@@ -13,8 +13,8 @@ target 'RappiTechTestApp' do
   #in a perfect world these pods should be hosted on their own remote git repository
   #since this is a test they will be managed locally.
 
-  #pod 'MovieWebService',  :path => 'dependencies/network/MovieWebService'
-  #pod 'MovieDataBase',    :path => 'dependencies/database/MovieDataBase'
+  pod 'MovieWebService',  :path => 'dependencies/network/MovieWebService'
+  pod 'MovieDataBase',    :path => 'dependencies/database/MovieDataBase'
 
   target 'RappiTechTestAppTests' do
     inherit! :search_paths
