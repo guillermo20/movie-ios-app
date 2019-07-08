@@ -1,3 +1,5 @@
+source "https://github.com/guillermo20/rappi-challenge-podspec-repo.git"
+source 'https://github.com/CocoaPods/Specs.git'
 
 platform :ios, '12.2'
 
@@ -8,6 +10,11 @@ target 'RappiTechTestApp' do
   # Pods for RappiTechTestApp
   pod 'MovieDBRepository',  :path => 'dependencies/repository/MovieDBRepository'
 
+  #in a perfect world these pods should be hosted on their own remote git repository
+  #since this is a test they will be managed locally.
+
+  #pod 'MovieWebService',  :path => 'dependencies/network/MovieWebService'
+  #pod 'MovieDataBase',    :path => 'dependencies/database/MovieDataBase'
 
   target 'RappiTechTestAppTests' do
     inherit! :search_paths
