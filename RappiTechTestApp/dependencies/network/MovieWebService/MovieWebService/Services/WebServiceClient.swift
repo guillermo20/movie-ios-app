@@ -15,6 +15,10 @@ public class WebServiceClient {
     private static let apikey = PlistManager.shared.readPropertyString(propertyName: "ApiKey")
     
     /// a simple function that can be configured to either retrieve movies or series from the api
+    ///
+    /// - parameters:
+    ///     - byCategory: look at `MovieEndpoint` for an example.
+    ///     - withResponseType: Responses are defined in MoviesResponse and TVResponse classes
     public class func loadData<EndpointT: Endpoint, ResponseT: Response>(byCategory: EndpointT, withResponseType: ResponseT.Type, pageNumber: Int = 1, completion: @escaping (ResponseT?, Error?) -> Void) {
         
         guard let url = byCategory.url else {
@@ -38,8 +42,8 @@ public class WebServiceClient {
                 // calls the completion closure with the response
                 do {
                     let decoder = JSONDecoder()
-                    let movieResponse = try decoder.decode(withResponseType, from: data)
-                    completion(movieResponse, nil)
+                    let response = try decoder.decode(withResponseType, from: data)
+                    completion(response, nil)
                 } catch {
                     completion(nil, error)
                 }
