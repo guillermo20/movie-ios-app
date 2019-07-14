@@ -19,7 +19,7 @@ public class WebServiceClient {
     /// - parameters:
     ///     - byCategory: look at `MovieEndpoint` for an example.
     ///     - withResponseType: Responses are defined in MoviesResponse and TVResponse classes
-    public class func loadData<EndpointT: Endpoint, ResponseT: Response>(byCategory: EndpointT, withResponseType: ResponseT.Type, pageNumber: Int = 1, completion: @escaping (ResponseT?, Error?) -> Void) {
+    public class func loadData<ResponseT: Response>(byCategory: Endpoint, withResponseType: ResponseT.Type, withParameters: Parameters = Parameters() , completion: @escaping (ResponseT?, Error?) -> Void) {
         
         guard let url = byCategory.url else {
             return
@@ -29,7 +29,10 @@ public class WebServiceClient {
             return
         }
         
-        Alamofire.request(url, method: .get, parameters: ["api_key": apikey, "page": pageNumber])
+        var parameters = withParameters
+        parameters["api_key"] = apikey
+        
+        Alamofire.request(url, method: .get, parameters: parameters)
             .validate()
             .responseJSON { (response) in
                 
