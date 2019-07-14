@@ -1,8 +1,8 @@
 //
 //  AppDelegate.swift
-//  RappiTechTestApp
+//  MoviesApp
 //
-//  Created by Guillermo Gutierrez on 7/6/19.
+//  Created by Guillermo Gutierrez on 7/14/19.
 //  Copyright © 2019 ggutierrez. All rights reserved.
 //
 

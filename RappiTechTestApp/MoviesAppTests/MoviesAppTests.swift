@@ -1,15 +1,15 @@
 //
-//  RappiTechTestAppTests.swift
-//  RappiTechTestAppTests
+//  MoviesAppTests.swift
+//  MoviesAppTests
 //
-//  Created by Guillermo Gutierrez on 7/6/19.
+//  Created by Guillermo Gutierrez on 7/14/19.
 //  Copyright © 2019 ggutierrez. All rights reserved.
 //
 
 import XCTest
-@testable import RappiTechTestApp
+@testable import MoviesApp
 
-class RappiTechTestAppTests: XCTestCase {
+class MoviesAppTests: XCTestCase {
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
