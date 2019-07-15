@@ -44,25 +44,22 @@ class DataController {
     }
     
     // MARK: Helper Functions
-    func createObject(entityObject: DatabaseObject) -> NSManagedObject{
+    
+    //creates an empty NSManagedObject given the type passed through the parameter
+    func createObject<T: DatabaseObject>(type: T.Type) -> T{
         
-        
-        let entity = NSEntityDescription.entity(forEntityName: entityObject.typeName,
+        let entity = NSEntityDescription.entity(forEntityName: String(describing: T.self),
                                                 in: backgroundContext)!
         
         let object = NSManagedObject(entity: entity, insertInto: backgroundContext)
-        
-        for (key, value) in entityObject.parameters {
-            object.setValue(value, forKey: key)
-        }
-        
-        return object
+        return object as! T
     }
     
-    func fetchObject(entityObject: DatabaseObject) -> NSManagedObject {
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: entityObject.typeName)
-        request.predicate = NSPredicate(format: "id = %@", entityObject.id)
+    func fetchObject<T: DatabaseObject>(type: T.Type, predicate: NSPredicate) -> [T]? {
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: String(describing: type.self))
+        request.predicate = predicate
+        //todo: fix this try?
         let result = try? self.backgroundContext.fetch(request)
-        return result?[0] as! NSManagedObject
+        return result as! [T]
     }
 }

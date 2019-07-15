@@ -9,12 +9,12 @@
 import Foundation
 
 /// especifies the TV Series endpoint and its categories
-enum TVEndpoint: Endpoint {
+public enum TVEndpoint: Endpoint {
     
     case topRated
     case popular
     
-    var url: URL? {
+    public var url: URL? {
         return URL(string: self.stringValue)
     }
     

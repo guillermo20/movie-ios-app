@@ -9,13 +9,13 @@
 import Foundation
 
 /// especifies the Movies endpoint and its categories
-enum MovieEndpoint: Endpoint {
+public enum MovieEndpoint: Endpoint {
     
     case topRated
     case popular
     case upcoming
     
-    var url: URL? {
+    public var url: URL? {
         return URL(string: self.stringValue)
     }
     

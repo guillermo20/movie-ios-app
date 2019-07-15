@@ -1,5 +1,5 @@
 //
-//  MovieDAO.swift
+//  DataBaseController.swift
 //  MovieDataBase
 //
 //  Created by Guillermo Gutierrez on 7/11/19.
@@ -25,24 +25,34 @@ public class DataBaseController: StorageController {
         }
     }
     
+    // MARK: StorageController protocol functions
+    
     public func save(object: DatabaseObject, completion: @escaping () -> Void) {
         dataController.backgroundContext.perform { [unowned self] in
-            self.dataController.createObject(entityObject: object)
-            self.commitTransaction()
+            try? self.dataController.backgroundContext.save()
         }
+        completion()
     }
     
     public func delete(object: DatabaseObject, completion: @escaping () -> Void) {
         dataController.backgroundContext.perform { [unowned self] in
-            let managedObject = self.dataController.fetchObject(entityObject: object)
-            self.dataController.backgroundContext.delete(managedObject)
+            
         }
+        completion()
     }
     
-    public func fetch<T>(model: T.Type, predicate: NSPredicate?,
-                         sorted: Sorted?,
-                         completion: (([T]) -> ())) where T : DatabaseObject {
-        // ToDo: implement this
+    
+    public func fetch<T: DatabaseObject>(type: T.Type, predicate: NSPredicate?, sorted: Sorted?, completion: @escaping ([T]) -> ()) {
+        guard let result = dataController.fetchObject(type: type, predicate: predicate!) else {
+            return
+        }
+        completion(result)
+    }
+    
+    
+    public func createObject<T: DatabaseObject>(type: T.Type, completion: @escaping (T) -> Void) {
+        let result = dataController.createObject(type: type)
+        completion(result)
     }
     
     

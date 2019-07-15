@@ -8,11 +8,11 @@
 
 import Foundation
 
-enum GenreEndpoint: Endpoint {
+public enum GenreEndpoint: Endpoint {
     case moviesGenreList
     case tvGenreList
     
-    var url: URL? {
+    public var url: URL? {
         return URL(string: self.stringValue)
     }
     

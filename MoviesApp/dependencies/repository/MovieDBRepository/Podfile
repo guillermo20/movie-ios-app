@@ -1,4 +1,3 @@
-source "https://github.com/guillermo20/rappi-challenge-podspec-repo.git"
 source 'https://github.com/CocoaPods/Specs.git'
 
 platform :ios, '12.2'

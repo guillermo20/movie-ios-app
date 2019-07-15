@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14490.99" systemVersion="18F203" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Genre" representedClassName="Genre" syncable="YES" codeGenerationType="class">
+    <entity name="Genre" representedClassName="Genre" syncable="YES" codeGenerationType="category">
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="movies" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Movie" inverseName="genres" inverseEntity="Movie" syncable="YES"/>
         <relationship name="tvSeries" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TVSerie" inverseName="genres" inverseEntity="TVSerie" syncable="YES"/>
     </entity>
-    <entity name="Movie" representedClassName="Movie" syncable="YES" codeGenerationType="class">
+    <entity name="Movie" representedClassName="Movie" syncable="YES" codeGenerationType="category">
         <attribute name="adult" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="backdropPath" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -22,7 +22,7 @@
         <attribute name="voteCount" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="genres" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Genre" inverseName="movies" inverseEntity="Genre" syncable="YES"/>
     </entity>
-    <entity name="TVSerie" representedClassName="TVSerie" syncable="YES" codeGenerationType="class">
+    <entity name="TVSerie" representedClassName="TVSerie" syncable="YES" codeGenerationType="category">
         <attribute name="backdropPath" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="firstAirDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
@@ -37,8 +37,8 @@
         <relationship name="genres" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Genre" inverseName="tvSeries" inverseEntity="Genre" syncable="YES"/>
     </entity>
     <elements>
+        <element name="Genre" positionX="143.3046875" positionY="246.6875" width="128" height="103"/>
         <element name="Movie" positionX="-63" positionY="-18" width="128" height="253"/>
         <element name="TVSerie" positionX="350.28515625" positionY="7.34765625" width="128" height="223"/>
-        <element name="Genre" positionX="143.3046875" positionY="246.6875" width="128" height="103"/>
     </elements>
 </model>

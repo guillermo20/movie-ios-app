@@ -11,17 +11,15 @@ import MovieWebService
 import MovieDataBase
 
 
-public class RepositoryHandler: Repository {
+class RepositoryHandler: Repository {
     
-    let service: WebServiceClient!
+    let database: StorageController
     
-    let database: StorageCo
-    
-    init(service: WebServiceClient ) {
-        
+    init(service: WebServiceClient, database: StorageController) {
+        self.database = database
     }
     
-    public func fetchGenres() {
+    func fetchGenres() {
         
     }
     
