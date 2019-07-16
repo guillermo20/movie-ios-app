@@ -54,4 +54,8 @@ public class WebServiceClient {
     
     }
     
+    public class func isConnectedToInternet() -> Bool {
+        return NetworkReachabilityManager()?.isReachable ?? false
+    }
+    
 }

@@ -1,14 +1,15 @@
 //
-//  TVSerie+PublicExtension.swift
+//  Movie.swift
 //  MovieDataBase
 //
-//  Created by Guillermo Gutierrez on 7/14/19.
+//  Created by Guillermo Gutierrez on 7/15/19.
 //  Copyright © 2019 ggutierrez. All rights reserved.
 //
 
 import Foundation
 import CoreData
 
-public class TVSerie: NSManagedObject {
+@objc(Movie)
+public class Movie: NSManagedObject {
     
 }

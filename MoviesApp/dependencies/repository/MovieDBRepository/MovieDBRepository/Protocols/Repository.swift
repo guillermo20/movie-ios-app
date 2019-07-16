@@ -10,7 +10,7 @@ import Foundation
 
 public protocol Repository {
     
-    func fetchGenres()
-    func fetchMovies()
-    func fetchTVSeries()
+//    func fetchGenres()
+//    func fetchMovies()
+//    func fetchTVSeries()
 }
