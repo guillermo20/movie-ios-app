@@ -20,7 +20,14 @@ class DataController {
     let backgroundContext:NSManagedObjectContext!
     
     init(modelName: String) {
-        persistentContainer = NSPersistentContainer(name: "MovieDataModel")
+        guard let modelURL = Bundle(for: type(of: self)).url(forResource: modelName, withExtension:"momd") else {
+            fatalError("Error loading model from bundle")
+        }
+        
+        guard let mom = NSManagedObjectModel(contentsOf: modelURL) else {
+            fatalError("Error initializing mom from: \(modelURL)")
+        }
+        persistentContainer = NSPersistentContainer(name: modelName, managedObjectModel: mom)
         
         backgroundContext = persistentContainer.newBackgroundContext()
     }

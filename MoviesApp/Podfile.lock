@@ -26,7 +26,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
-  MovieDataBase: 5d409fd9a6ffe37a557ff2b2faa314d6ab9085df
+  MovieDataBase: ed26260058a8f24874d273ed5264f0ab7fec2fb9
   MovieDBRepository: 040a1ec6bc7409aba47744918a4b8c8905108634
   MovieWebService: 9bfc797240bf8d78c07c38a1e40fc9d1804e6d70
 

@@ -14,15 +14,10 @@ public class DataBaseController: StorageController {
     
     required public init(dataModelName: DataBaseName) {
         self.dataController = DataController(modelName: dataModelName.rawValue)
-        self.dataController.load()
     }
     
-    func commitTransaction() {
-        do {
-            try self.dataController.backgroundContext.save()
-        } catch {
-            NSLog("an error has ocurred while saving data", error.localizedDescription)
-        }
+    public func loadInitConfig() {
+        self.dataController.load()
     }
     
     // MARK: StorageController protocol functions

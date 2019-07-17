@@ -13,6 +13,7 @@ public protocol StorageController {
     
     init(dataModelName: DataBaseName)
     
+    func loadInitConfig()
     func createObject<T: DatabaseObject>(type: T.Type, completion: @escaping (T) -> Void )
     func save(object: DatabaseObject, completion: @escaping () -> Void)
     func delete(object: DatabaseObject, completion: @escaping () -> Void)
