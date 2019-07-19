@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="eNy-N5-MKa">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--TVSeries-->
+        <scene sceneID="gV8-Tz-ldo">
+            <objects>
+                <viewController id="YLv-c0-xJG" customClass="TVSeriesViewController" customModule="MoviesApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="NdL-Tz-Y9U">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="HoZ-qR-prF"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="TVSeries" image="series" id="sJU-c6-tko"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1cQ-oR-J0k" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="601" y="356"/>
+        </scene>
+        <!--Movies-->
+        <scene sceneID="XTA-6O-Rn4">
+            <objects>
+                <viewController id="08x-LZ-hlK" customClass="MoviesViewController" customModule="MoviesApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2pT-Sd-cKe">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="1JQ-0g-suL"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Movies" image="movies" id="kTi-RK-9g9"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="E76-j7-QNn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="601" y="-292"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="zQO-Xp-Zag">
+            <objects>
+                <tabBarController id="eNy-N5-MKa" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="4gP-3J-ELm">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="08x-LZ-hlK" kind="relationship" relationship="viewControllers" id="zmz-ro-Q8P"/>
+                        <segue destination="YLv-c0-xJG" kind="relationship" relationship="viewControllers" id="Bdd-VM-orZ"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bu5-xk-w7G" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-317" y="32"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="movies" width="30" height="30"/>
+        <image name="series" width="30" height="30"/>
+    </resources>
+</document>
