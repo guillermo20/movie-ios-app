@@ -10,16 +10,20 @@ import Foundation
 import Alamofire
 
 /// implements calls to the movie db api services
-public class WebServiceClient {
+public class WebServiceClient: Service {
     
-    private static let apikey = PlistManager.shared.readPropertyString(propertyName: "ApiKey")
+    public init() {
+        
+    }
+    
+    private let apikey = PlistManager.shared.readPropertyString(propertyName: "ApiKey")
     
     /// a simple function that can be configured to either retrieve movies or series from the api
     ///
     /// - parameters:
     ///     - byCategory: look at `MovieEndpoint` for an example.
     ///     - withResponseType: Responses are defined in MoviesResponse and TVResponse classes
-    public class func loadData<ResponseT: Response>(byCategory: Endpoint, withResponseType: ResponseT.Type, withParameters: Parameters = Parameters() , completion: @escaping (ResponseT?, Error?) -> Void) {
+    public func loadData<ResponseT: Response>(byCategory: Endpoint, withResponseType: ResponseT.Type, withParameters: Parameters = Parameters() , completion: @escaping (ResponseT?, Error?) -> Void) {
         
         guard let url = byCategory.url else {
             return
@@ -54,7 +58,7 @@ public class WebServiceClient {
     
     }
     
-    public class func isConnectedToInternet() -> Bool {
+    public func isConnectedToInternet() -> Bool {
         return NetworkReachabilityManager()?.isReachable ?? false
     }
     

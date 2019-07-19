@@ -11,13 +11,12 @@ import MovieDBRepository
 
 class MoviesPresenter {
     
-    let repository: Repository
+    // repository 
     
     weak private var viewDelegate: MoviesViewDelegate?
     
-    init(viewDelegate: MoviesViewDelegate, repository: Repository) {
+    func setViewDelegate(viewDelegate: MoviesViewDelegate) {
         self.viewDelegate = viewDelegate
-        self.repository = repository
     }
     
 }

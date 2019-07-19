@@ -1,5 +1,5 @@
 //
-//  StorageController.swift
+//  Storage.swift
 //  MovieDataBase
 //
 //  Created by Guillermo Gutierrez on 7/13/19.
@@ -9,7 +9,7 @@
 import Foundation
 
 // simple abstraction of an storage or database interace.
-public protocol StorageController {
+public protocol Storage {
     
     init(dataModelName: DataBaseName)
     

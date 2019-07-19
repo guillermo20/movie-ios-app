@@ -7,20 +7,15 @@
 //
 
 import UIKit
-import MovieDBRepository
-import MovieDataBase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-    let repository = RepositoryHandler(database: DataBaseController(dataModelName: .movieDataModel) )
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        repository.loadInitConfig()
         return true
     }
 

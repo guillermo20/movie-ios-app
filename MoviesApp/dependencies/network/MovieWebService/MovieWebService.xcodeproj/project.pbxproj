@@ -13,6 +13,7 @@
 		6013787E22D3F2B200A81B50 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6013787D22D3F2B200A81B50 /* Response.swift */; };
 		6013788022D3F5FA00A81B50 /* TVResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6013787F22D3F5FA00A81B50 /* TVResponse.swift */; };
 		602F35E622D3FE610076DDDA /* TVEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602F35E522D3FE610076DDDA /* TVEndpoint.swift */; };
+		6039080722E2885F0072541D /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6039080622E2885E0072541D /* Service.swift */; };
 		607318AA22D18ABA00901F6A /* MovieWebService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 607318A022D18ABA00901F6A /* MovieWebService.framework */; };
 		607318AF22D18ABA00901F6A /* MovieWebServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607318AE22D18ABA00901F6A /* MovieWebServiceTests.swift */; };
 		607318B122D18ABA00901F6A /* MovieWebService.h in Headers */ = {isa = PBXBuildFile; fileRef = 607318A322D18ABA00901F6A /* MovieWebService.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -47,6 +48,7 @@
 		6013787D22D3F2B200A81B50 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		6013787F22D3F5FA00A81B50 /* TVResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVResponse.swift; sourceTree = "<group>"; };
 		602F35E522D3FE610076DDDA /* TVEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVEndpoint.swift; sourceTree = "<group>"; };
+		6039080622E2885E0072541D /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		607318A022D18ABA00901F6A /* MovieWebService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MovieWebService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		607318A322D18ABA00901F6A /* MovieWebService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MovieWebService.h; sourceTree = "<group>"; };
 		607318A422D18ABA00901F6A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 		6013787A22D3F26D00A81B50 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				6039080622E2885E0072541D /* Service.swift */,
 				6013787B22D3F29600A81B50 /* Endpoint.swift */,
 				6013787D22D3F2B200A81B50 /* Response.swift */,
 			);
@@ -358,6 +361,7 @@
 				6013787722D3CAEB00A81B50 /* MovieEnpoint.swift in Sources */,
 				60C057EE22D3738C00317668 /* MoviesResponse.swift in Sources */,
 				60C057E822D2E46800317668 /* PlistManager.swift in Sources */,
+				6039080722E2885F0072541D /* Service.swift in Sources */,
 				602F35E622D3FE610076DDDA /* TVEndpoint.swift in Sources */,
 				609CF53722D7D2EF00773D71 /* ParameterBuilder.swift in Sources */,
 				6013787E22D3F2B200A81B50 /* Response.swift in Sources */,

@@ -1,5 +1,5 @@
 //
-//  DataBaseController.swift
+//  DatabaseHandler.swift
 //  MovieDataBase
 //
 //  Created by Guillermo Gutierrez on 7/11/19.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class DataBaseController: StorageController {
+public class DatabaseHandler: Storage {
     
     var dataController: DataController!
     
@@ -20,7 +20,7 @@ public class DataBaseController: StorageController {
         self.dataController.load()
     }
     
-    // MARK: StorageController protocol functions
+    // MARK: Storage protocol functions
     
     public func save(object: DatabaseObject, completion: @escaping () -> Void) {
         dataController.backgroundContext.perform { [unowned self] in

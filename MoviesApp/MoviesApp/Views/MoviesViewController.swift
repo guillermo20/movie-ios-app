@@ -7,13 +7,18 @@
 //
 
 import UIKit
+import MovieDBRepository
 
-class MoviesViewController: UIViewController {
-
+class MoviesViewController: UIViewController, MoviesViewDelegate {
+    
+    
+    // repository should be injected with a dependency injector.
+    private let presenter = MoviesPresenter()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("Movies")
         // Do any additional setup after loading the view.
+        self.presenter.setViewDelegate(viewDelegate: self)
     }
     
 

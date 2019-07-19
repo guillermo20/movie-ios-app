@@ -17,10 +17,13 @@ import MovieDataBase
 /// to saving it into the local store
 public class RepositoryHandler: Repository {
     
-    let database: StorageController
+    private let database: Storage
     
-    public init(database: StorageController) {
+    private let service: Service
+    
+    public init(database: Storage, service: Service) {
         self.database = database
+        self.service = service
     }
     
     public func loadInitConfig() {
@@ -30,7 +33,7 @@ public class RepositoryHandler: Repository {
     func loadGenres(completion: @escaping ([Genre]?, Error?) -> Void) {
         
         // verifies that the app has internet conectivity
-        if !WebServiceClient.isConnectedToInternet() {
+        if !service.isConnectedToInternet() {
             DispatchQueue.main.async {
                 completion(nil, MoviesError(message: "app could not connect to internet"))
             }
@@ -38,7 +41,7 @@ public class RepositoryHandler: Repository {
         }
         
         // loads data from the remote api tv series genres
-        WebServiceClient.loadData(byCategory: GenreEndpoint.tvGenreList
+        service.loadData(byCategory: GenreEndpoint.tvGenreList
         ,withResponseType: GenreResponse.self) { (response, error) in
             guard let responseTV = response else {
                 DispatchQueue.main.async {
@@ -47,7 +50,7 @@ public class RepositoryHandler: Repository {
                 return
             }
             // loads data from the remote api tv series genres
-            WebServiceClient.loadData(byCategory: GenreEndpoint.moviesGenreList
+            self.service.loadData(byCategory: GenreEndpoint.moviesGenreList
                 , withResponseType: GenreResponse.self, completion: { (response, error) in
                     guard let responseMovie = response else {
                         DispatchQueue.main.async {
