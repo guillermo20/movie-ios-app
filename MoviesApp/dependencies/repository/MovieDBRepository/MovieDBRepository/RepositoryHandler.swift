@@ -15,7 +15,7 @@ import MovieDataBase
 /// all ui calls should have been abstracted meaning that repository
 /// handles all the complex logic from retreiving data from remote api
 /// to saving it into the local store
-public class RepositoryHandler: Repository {
+public struct RepositoryHandler: Repository {
     
     private let database: Storage
     
@@ -63,7 +63,41 @@ public class RepositoryHandler: Repository {
     }
     
     public func fetchMovies(completion: @escaping ([Movie]?, Error?) -> Void) {
-        
+        NSLog("calls the fetchMovie implementation")
+        if service.isConnectedToInternet() {
+            service.loadData(byCategory: MovieEndpoint.topRated, withResponseType: MoviesResponse.self) { (response, error) in
+                guard let results = response?.results else {
+                    NSLog(error!.localizedDescription)
+                    self.fetchMoviesFromDatabase(completion: completion)
+                    return
+                }
+                var movieList = [Movie]()
+                for item in results {
+                    let movieObj = self.database.createObject(type: Movie.self)
+                    movieList.append(movieObj)
+                }
+                self.database.save()
+                DispatchQueue.main.async {
+                    completion(movieList, nil)
+                }
+            }
+        } else {
+            self.fetchMoviesFromDatabase(completion: completion)
+        }
+    }
+    
+    private func fetchMoviesFromDatabase(completion: @escaping ([Movie]?, Error?) -> Void) {
+        database.fetch(type: Movie.self, predicate: nil, sorted: nil) { (movieList) in
+            guard let movieList = movieList else {
+                DispatchQueue.main.async {
+                    completion(nil, MoviesError(message: "could not retrieve data from local store."))
+                }
+                return
+            }
+            DispatchQueue.main.async {
+                completion(movieList, nil)
+            }
+        }
     }
     
     public func fetchTVSeries() {

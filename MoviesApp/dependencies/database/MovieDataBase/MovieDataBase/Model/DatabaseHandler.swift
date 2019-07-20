@@ -8,11 +8,11 @@
 
 import Foundation
 
-public class DatabaseHandler: Storage {
+public struct DatabaseHandler: Storage {
     
     var dataController: DataController!
     
-    required public init(dataModelName: DataBaseName) {
+    public init(dataModelName: DataBaseName) {
         self.dataController = DataController(modelName: dataModelName.rawValue)
     }
     
@@ -22,22 +22,21 @@ public class DatabaseHandler: Storage {
     
     // MARK: Storage protocol functions
     
-    public func save(object: DatabaseObject, completion: @escaping () -> Void) {
-        dataController.backgroundContext.perform { [unowned self] in
+    public func save() {
+        dataController.backgroundContext.perform {
             try? self.dataController.backgroundContext.save()
         }
-        completion()
     }
     
     public func delete(object: DatabaseObject, completion: @escaping () -> Void) {
-        dataController.backgroundContext.perform { [unowned self] in
+        dataController.backgroundContext.perform { 
             
         }
         completion()
     }
     
     
-    public func fetch<T: DatabaseObject>(type: T.Type, predicate: NSPredicate?, sorted: Sorted?, completion: @escaping ([T]) -> ()) {
+    public func fetch<T: DatabaseObject>(type: T.Type, predicate: NSPredicate?, sorted: Sorted?, completion: @escaping ([T]?) -> ()) {
         guard let result = dataController.fetchObject(type: type, predicate: predicate!) else {
             return
         }
@@ -45,9 +44,9 @@ public class DatabaseHandler: Storage {
     }
     
     
-    public func createObject<T: DatabaseObject>(type: T.Type, completion: @escaping (T) -> Void) {
+    public func createObject<T: DatabaseObject>(type: T.Type) -> T {
         let result = dataController.createObject(type: type)
-        completion(result)
+        return result
     }
     
     

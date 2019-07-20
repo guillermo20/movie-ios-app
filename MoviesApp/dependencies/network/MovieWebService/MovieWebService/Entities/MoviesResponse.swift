@@ -7,9 +7,9 @@
 //
 import Foundation
 
-struct MoviesResponse: Codable, Response {
-    let page, totalResults, totalPages: Int
-    let results: [ResultMovie]
+public struct MoviesResponse: Codable, Response {
+    public let page, totalResults, totalPages: Int
+    public let results: [ResultMovie]
     
     enum CodingKeys: String, CodingKey {
         case page
@@ -20,17 +20,17 @@ struct MoviesResponse: Codable, Response {
 }
 
 // MARK: - ResultMovie
-struct ResultMovie: Codable {
-    let voteCount, id: Int
-    let video: Bool
-    let voteAverage: Double
-    let title: String
-    let popularity: Double
-    let posterPath, originalLanguage, originalTitle: String
-    let genreIDS: [Int]
-    let backdropPath: String
-    let adult: Bool
-    let overview, releaseDate: String
+public struct ResultMovie: Codable {
+    public let voteCount, id: Int
+    public let video: Bool
+    public let voteAverage: Double
+    public let title: String
+    public let popularity: Double
+    public let posterPath, originalLanguage, originalTitle: String
+    public let genreIDS: [Int]
+    public let backdropPath: String
+    public let adult: Bool
+    public let overview, releaseDate: String
     
     enum CodingKeys: String, CodingKey {
         case voteCount = "vote_count"

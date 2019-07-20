@@ -7,7 +7,11 @@
 //
 
 import Foundation
+import MovieDataBase
 
 protocol MoviesViewDelegate: NSObjectProtocol {
+    
+    func displayMovies(movies: [Movie])
+    func showError(message: String)
     
 }

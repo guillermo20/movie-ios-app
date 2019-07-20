@@ -8,6 +8,7 @@
 
 import UIKit
 import MovieDBRepository
+import MovieDataBase
 
 class MoviesViewController: UIViewController, MoviesViewDelegate {
     
@@ -20,6 +21,17 @@ class MoviesViewController: UIViewController, MoviesViewDelegate {
         // Do any additional setup after loading the view.
         self.presenter.setViewDelegate(viewDelegate: self)
     }
-
-
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.presenter.fetchMovies()
+    }
+    
+    func displayMovies(movies: [Movie]) {
+        //todo:
+    }
+    
+    func showError(message: String) {
+        //todo:
+    }
+    
 }

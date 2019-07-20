@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 
 /// implements calls to the movie db api services
-public class WebServiceClient: Service {
+public struct WebServiceClient: Service {
     
     public init() {
         
@@ -23,7 +23,7 @@ public class WebServiceClient: Service {
     /// - parameters:
     ///     - byCategory: look at `MovieEndpoint` for an example.
     ///     - withResponseType: Responses are defined in MoviesResponse and TVResponse classes
-    public func loadData<ResponseT: Response>(byCategory: Endpoint, withResponseType: ResponseT.Type, withParameters: Parameters = Parameters() , completion: @escaping (ResponseT?, Error?) -> Void) {
+    public func loadData<ResponseT: Response>(byCategory: Endpoint, withResponseType: ResponseT.Type, withParameters: Parameters, completion: @escaping (ResponseT?, Error?) -> Void) {
         
         guard let url = byCategory.url else {
             return

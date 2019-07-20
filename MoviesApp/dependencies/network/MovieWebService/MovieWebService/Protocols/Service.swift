@@ -19,7 +19,7 @@ public protocol Service {
 public extension Service {
 
     func loadData<ResponseT: Response>(byCategory: Endpoint, withResponseType: ResponseT.Type, withParameters: Parameters = Parameters(), completion: @escaping (ResponseT?, Error?) -> Void) {
-//        return loadData(byCategory: byCategory, withResponseType: withResponseType, withParameters: withParameters, completion: completion)
+        loadData(byCategory: byCategory, withResponseType: withResponseType, withParameters: withParameters, completion: completion)
     }
 
 }

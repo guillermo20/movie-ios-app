@@ -25,8 +25,15 @@ class MoviesPresenter {
         self.viewDelegate = viewDelegate
     }
     
-    func fetchMovies(completion: @escaping (Movie, Error) -> Void) {
-        
+    func fetchMovies() {
+        self.repository.fetchMovies { (movies, error) in
+            guard let movies = movies else {
+                self.viewDelegate?.showError(message: error?.localizedDescription ??
+                    MessageConstants.genericErrorMessage)
+                return
+            }
+            self.viewDelegate?.displayMovies(movies: movies)
+        }
     }
     
 }
