@@ -16,5 +16,6 @@ Pod::Spec.new do |spec|
 
   spec.source_files = "MovieWebService/**/*.{swift}"
   spec.dependency 'Alamofire', '~> 4.8.2'
+  spec.resources = "MovieWebService/webservice.plist"
 
 end
