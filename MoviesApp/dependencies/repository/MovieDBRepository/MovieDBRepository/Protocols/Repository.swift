@@ -7,9 +7,12 @@
 //
 
 import Foundation
+import MovieDataBase
 
 public protocol Repository {
     
+//    func loadGenres(completion: @escaping ([Genre]?, Error?) -> Void)
+    func fetchMovies(completion: @escaping ([Movie]?, Error?) -> Void)
 //    func fetchGenres()
 //    func fetchMovies()
 //    func fetchTVSeries()

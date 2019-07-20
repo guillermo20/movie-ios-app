@@ -13,7 +13,7 @@ class MoviesViewController: UIViewController, MoviesViewDelegate {
     
     
     // repository should be injected with a dependency injector.
-    private let presenter = MoviesPresenter()
+    private let presenter = MoviesPresenter(repository: DependencyInjector.dependencies.resolveRepository())
     
     override func viewDidLoad() {
         super.viewDidLoad()

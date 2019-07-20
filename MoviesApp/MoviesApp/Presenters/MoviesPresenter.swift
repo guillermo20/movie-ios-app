@@ -8,15 +8,25 @@
 
 import Foundation
 import MovieDBRepository
+import MovieDataBase
+
 
 class MoviesPresenter {
     
-    // repository 
-    
     weak private var viewDelegate: MoviesViewDelegate?
+    
+    private let repository: Repository
+    
+    init(repository: Repository) {
+        self.repository = repository
+    }
     
     func setViewDelegate(viewDelegate: MoviesViewDelegate) {
         self.viewDelegate = viewDelegate
+    }
+    
+    func fetchMovies(completion: @escaping (Movie, Error) -> Void) {
+        
     }
     
 }

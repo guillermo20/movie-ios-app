@@ -24,9 +24,6 @@ public class RepositoryHandler: Repository {
     public init(database: Storage, service: Service) {
         self.database = database
         self.service = service
-    }
-    
-    public func loadInitConfig() {
         self.database.loadInitConfig()
     }
     
@@ -65,7 +62,7 @@ public class RepositoryHandler: Repository {
         }
     }
     
-    public func fetchMovies() {
+    public func fetchMovies(completion: @escaping ([Movie]?, Error?) -> Void) {
         
     }
     

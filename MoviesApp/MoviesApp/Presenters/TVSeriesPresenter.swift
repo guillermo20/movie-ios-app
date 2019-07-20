@@ -11,7 +11,6 @@ import MovieDBRepository
 
 class TVSeriesPresenter {
     
-    // repository
     
     weak private var viewDelegate: TVSeriesViewDelegate?
     
