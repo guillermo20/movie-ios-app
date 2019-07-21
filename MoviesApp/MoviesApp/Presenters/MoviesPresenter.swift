@@ -37,7 +37,13 @@ class MoviesPresenter {
     }
     
     func fetchMovieImage(movie: Movie) {
-        self.repository.fetchMoviePosterImage(movie: movie)
+        self.repository.fetchMovieImage(movie: movie, imageType: .posterImage) { (data, error) in
+            guard let data = data else {
+                self.viewDelegate?.showError(message: MessageConstants.genericErrorMessage)
+                return
+            }
+            self.viewDelegate?.updateMovieImage(data: data)
+        }
     }
     
 }

@@ -18,8 +18,9 @@
 		6010363E22E2803300A92421 /* DependencyInjector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6010363D22E2803300A92421 /* DependencyInjector.swift */; };
 		6010364022E281B200A92421 /* Dependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6010363F22E281B200A92421 /* Dependency.swift */; };
 		6010364222E2834B00A92421 /* DependencyHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6010364122E2834B00A92421 /* DependencyHandler.swift */; };
+		60336A1422E412C8008869D0 /* PosterViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60336A1222E412C8008869D0 /* PosterViewCell.swift */; };
+		60336A1522E412C8008869D0 /* PosterViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60336A1322E412C8008869D0 /* PosterViewCell.xib */; };
 		604C725F22E2AD8E00629E22 /* MessageConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604C725E22E2AD8E00629E22 /* MessageConstants.swift */; };
-		604C726222E38D7E00629E22 /* MainPosterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604C726122E38D7E00629E22 /* MainPosterCell.swift */; };
 		608CCBCF22DBBCFD00E398D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608CCBCE22DBBCFD00E398D8 /* AppDelegate.swift */; };
 		608CCBD422DBBCFD00E398D8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 608CCBD222DBBCFD00E398D8 /* Main.storyboard */; };
 		608CCBD622DBBCFE00E398D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 608CCBD522DBBCFE00E398D8 /* Assets.xcassets */; };
@@ -50,8 +51,9 @@
 		6010363D22E2803300A92421 /* DependencyInjector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyInjector.swift; sourceTree = "<group>"; };
 		6010363F22E281B200A92421 /* Dependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dependency.swift; sourceTree = "<group>"; };
 		6010364122E2834B00A92421 /* DependencyHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyHandler.swift; sourceTree = "<group>"; };
+		60336A1222E412C8008869D0 /* PosterViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterViewCell.swift; sourceTree = "<group>"; };
+		60336A1322E412C8008869D0 /* PosterViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PosterViewCell.xib; sourceTree = "<group>"; };
 		604C725E22E2AD8E00629E22 /* MessageConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageConstants.swift; sourceTree = "<group>"; };
-		604C726122E38D7E00629E22 /* MainPosterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPosterCell.swift; sourceTree = "<group>"; };
 		608CCBCB22DBBCFD00E398D8 /* MoviesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoviesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		608CCBCE22DBBCFD00E398D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		608CCBD322DBBCFD00E398D8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -156,7 +158,8 @@
 		604C726022E38D5A00629E22 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				604C726122E38D7E00629E22 /* MainPosterCell.swift */,
+				60336A1222E412C8008869D0 /* PosterViewCell.swift */,
+				60336A1322E412C8008869D0 /* PosterViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -301,6 +304,7 @@
 				608CCBD922DBBCFE00E398D8 /* LaunchScreen.storyboard in Resources */,
 				608CCBD622DBBCFE00E398D8 /* Assets.xcassets in Resources */,
 				608CCBD422DBBCFD00E398D8 /* Main.storyboard in Resources */,
+				60336A1522E412C8008869D0 /* PosterViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -383,11 +387,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				604C725F22E2AD8E00629E22 /* MessageConstants.swift in Sources */,
+				60336A1422E412C8008869D0 /* PosterViewCell.swift in Sources */,
 				6010363E22E2803300A92421 /* DependencyInjector.swift in Sources */,
 				6010363522E14E2900A92421 /* MoviesViewDelegate.swift in Sources */,
 				6010363222E14C5F00A92421 /* TVSeriesViewController.swift in Sources */,
 				6010364022E281B200A92421 /* Dependency.swift in Sources */,
-				604C726222E38D7E00629E22 /* MainPosterCell.swift in Sources */,
 				6010363722E14E3900A92421 /* TVSeriesViewDelegate.swift in Sources */,
 				608CCBCF22DBBCFD00E398D8 /* AppDelegate.swift in Sources */,
 				6010364222E2834B00A92421 /* DependencyHandler.swift in Sources */,

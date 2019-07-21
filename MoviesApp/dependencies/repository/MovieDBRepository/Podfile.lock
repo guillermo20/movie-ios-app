@@ -20,8 +20,8 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
-  MovieDataBase: 5d409fd9a6ffe37a557ff2b2faa314d6ab9085df
-  MovieWebService: 9bfc797240bf8d78c07c38a1e40fc9d1804e6d70
+  MovieDataBase: ed26260058a8f24874d273ed5264f0ab7fec2fb9
+  MovieWebService: 5bb0e75d50b4e84d8db6d2ddf713b3c8c3687b46
 
 PODFILE CHECKSUM: 0553bd673e72e1e00cddd6aa6ce1aa2714afd225
 

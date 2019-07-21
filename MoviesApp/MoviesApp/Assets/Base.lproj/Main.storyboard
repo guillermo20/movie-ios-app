@@ -24,7 +24,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1cQ-oR-J0k" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="601" y="356"/>
+            <point key="canvasLocation" x="598.55072463768124" y="355.58035714285711"/>
         </scene>
         <!--Movies-->
         <scene sceneID="XTA-6O-Rn4">
@@ -44,7 +44,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MainPosterCell" id="XGQ-in-Vam" customClass="MainPosterCell" customModule="MoviesApp" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PosterViewCell" id="XGQ-in-Vam" customClass="PosterViewCell" customModule="MoviesApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="132" height="172"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -63,7 +63,7 @@
                                             <constraint firstAttribute="bottom" secondItem="N2e-Ec-pb0" secondAttribute="bottom" id="vEX-NI-9oP"/>
                                         </constraints>
                                         <connections>
-                                            <outlet property="image" destination="N2e-Ec-pb0" id="jAG-TT-brV"/>
+                                            <outlet property="posterImageView" destination="N2e-Ec-pb0" id="7IC-l5-EdZ"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>

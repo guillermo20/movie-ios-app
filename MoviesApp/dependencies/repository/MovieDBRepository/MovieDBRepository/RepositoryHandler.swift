@@ -14,7 +14,7 @@ import MovieDataBase
 /// this separates the ui layer from the data layer,
 /// all ui calls should have been abstracted meaning that repository
 /// handles all the complex logic from retreiving data from remote api
-/// to saving it into the local store
+/// and saving it into the local store
 public struct RepositoryHandler: Repository {
     
     private let database: Storage
@@ -108,31 +108,44 @@ public struct RepositoryHandler: Repository {
         }
     }
     
-    public func fetchMoviePosterImage(movie: Movie, completion: @escaping(Data?, Error) -> Void) {
+    public func fetchMovieImage(movie: Movie, imageType: ImageType, completion: @escaping(Data?, Error?) -> Void) {
         guard let filePath = movie.posterPath else {
             return
         }
         
-        service.donwloadData(byCategory: ImageEndpoint.defaultPosterURL(filePath)) { (data, error) in
+        var endpoint: Endpoint?
+        switch imageType {
+        case .backdropImage:
+            endpoint = ImageEndpoint.defaultBackdropURL(filePath)
+            break
+        case .posterImage:
+            endpoint = ImageEndpoint.defaultPosterURL(filePath)
+            break
+        }
+        
+        service.donwloadData(byCategory: endpoint!) { (data, error) in
             guard let data = data else {
                 DispatchQueue.main.async {
-                    //completion(nil, error)
+                    completion(nil, error)
                 }
                 return
             }
-            movie.posterImage = data
+            
+            switch imageType {
+            case .backdropImage:
+                movie.backdropImage = data
+                break
+            case .posterImage:
+                movie.posterImage = data
+            }
             
             //saves the change in the NSManagedOject in the db
             self.database.save()
             
             DispatchQueue.main.async {
-                //completion(data, error)
+                completion(data, error)
             }
         }
-    }
-    
-    public func fetchTVSeries() {
-        
     }
     
 }
