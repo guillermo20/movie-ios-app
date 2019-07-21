@@ -71,9 +71,17 @@ public struct RepositoryHandler: Repository {
                     self.fetchMoviesFromDatabase(completion: completion)
                     return
                 }
+                
                 var movieList = [Movie]()
                 for item in results {
                     let movieObj = self.database.createObject(type: Movie.self)
+                    movieObj.backdropPath = item.backdropPath
+                    movieObj.posterPath = item.posterPath
+                    movieObj.title = item.title
+                    movieObj.id = Int32(item.id)
+                    movieObj.originalTitle = item.originalTitle
+                    // genres IDs
+                    // movieObj.releaseDate = Date(item.releaseDate
                     movieList.append(movieObj)
                 }
                 self.database.save()

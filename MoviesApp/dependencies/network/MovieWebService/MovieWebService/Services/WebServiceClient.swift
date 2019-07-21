@@ -58,6 +58,18 @@ public struct WebServiceClient: Service {
     
     }
     
+    public func donwloadData(byCategory: Endpoint, completion: @escaping (Data?, Error?) -> Void) {
+        
+        guard let url = byCategory.url else {
+            return
+        }
+        
+        Alamofire.download(url).response { (response) in
+            print(response)
+        }
+        
+    }
+    
     public func isConnectedToInternet() -> Bool {
         return NetworkReachabilityManager()?.isReachable ?? false
     }

@@ -19,6 +19,7 @@
 		6010364022E281B200A92421 /* Dependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6010363F22E281B200A92421 /* Dependency.swift */; };
 		6010364222E2834B00A92421 /* DependencyHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6010364122E2834B00A92421 /* DependencyHandler.swift */; };
 		604C725F22E2AD8E00629E22 /* MessageConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604C725E22E2AD8E00629E22 /* MessageConstants.swift */; };
+		604C726222E38D7E00629E22 /* MainPosterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604C726122E38D7E00629E22 /* MainPosterCell.swift */; };
 		608CCBCF22DBBCFD00E398D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608CCBCE22DBBCFD00E398D8 /* AppDelegate.swift */; };
 		608CCBD422DBBCFD00E398D8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 608CCBD222DBBCFD00E398D8 /* Main.storyboard */; };
 		608CCBD622DBBCFE00E398D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 608CCBD522DBBCFE00E398D8 /* Assets.xcassets */; };
@@ -50,6 +51,7 @@
 		6010363F22E281B200A92421 /* Dependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dependency.swift; sourceTree = "<group>"; };
 		6010364122E2834B00A92421 /* DependencyHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyHandler.swift; sourceTree = "<group>"; };
 		604C725E22E2AD8E00629E22 /* MessageConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageConstants.swift; sourceTree = "<group>"; };
+		604C726122E38D7E00629E22 /* MainPosterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPosterCell.swift; sourceTree = "<group>"; };
 		608CCBCB22DBBCFD00E398D8 /* MoviesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoviesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		608CCBCE22DBBCFD00E398D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		608CCBD322DBBCFD00E398D8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 		6037F93D22E14A0700ABCE9C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				604C726022E38D5A00629E22 /* Cells */,
 				6010362F22E14C4B00A92421 /* MoviesViewController.swift */,
 				6010363122E14C5F00A92421 /* TVSeriesViewController.swift */,
 			);
@@ -148,6 +151,14 @@
 				604C725E22E2AD8E00629E22 /* MessageConstants.swift */,
 			);
 			path = Constants;
+			sourceTree = "<group>";
+		};
+		604C726022E38D5A00629E22 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				604C726122E38D7E00629E22 /* MainPosterCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		608CCBC222DBBCFD00E398D8 = {
@@ -376,6 +387,7 @@
 				6010363522E14E2900A92421 /* MoviesViewDelegate.swift in Sources */,
 				6010363222E14C5F00A92421 /* TVSeriesViewController.swift in Sources */,
 				6010364022E281B200A92421 /* Dependency.swift in Sources */,
+				604C726222E38D7E00629E22 /* MainPosterCell.swift in Sources */,
 				6010363722E14E3900A92421 /* TVSeriesViewDelegate.swift in Sources */,
 				608CCBCF22DBBCFD00E398D8 /* AppDelegate.swift in Sources */,
 				6010364222E2834B00A92421 /* DependencyHandler.swift in Sources */,

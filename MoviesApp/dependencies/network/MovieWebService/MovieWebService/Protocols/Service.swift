@@ -12,6 +12,8 @@ public protocol Service {
 
     func loadData<ResponseT: Response>(byCategory: Endpoint, withResponseType: ResponseT.Type, withParameters: Parameters, completion: @escaping (ResponseT?, Error?) -> Void)
 
+    func donwloadData(byCategory: Endpoint, completion: @escaping (Data?, Error?) -> Void)
+    
     func isConnectedToInternet() -> Bool
 
 }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-// simple abstraction of an storage or database interace.
+// simple abstraction of an storage or database interface.
 public protocol Storage {
     
     init(dataModelName: DataBaseName)
