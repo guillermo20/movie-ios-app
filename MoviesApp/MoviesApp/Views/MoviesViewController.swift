@@ -49,6 +49,7 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate
     // MARK: MVP view delegate functions
     func displayMovies(movies: [Movie]) {
         moviesList = movies
+        presenter.fetchMovieImage(movie: movies[0])
         collectionView.reloadData()
     }
     

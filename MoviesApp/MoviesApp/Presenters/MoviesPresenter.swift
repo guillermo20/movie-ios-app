@@ -36,4 +36,8 @@ class MoviesPresenter {
         }
     }
     
+    func fetchMovieImage(movie: Movie) {
+        self.repository.fetchMoviePosterImage(movie: movie)
+    }
+    
 }

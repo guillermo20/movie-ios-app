@@ -38,7 +38,7 @@ public struct WebServiceClient: Service {
         
         Alamofire.request(url, method: .get, parameters: parameters)
             .validate()
-            .responseJSON { (response) in
+            .responseJSON(queue: DispatchQueue.global()) { (response) in
                 
                 // if there is no data then we should call the completion closure with an error
                 guard let data = response.data else {
@@ -63,9 +63,14 @@ public struct WebServiceClient: Service {
         guard let url = byCategory.url else {
             return
         }
-        
-        Alamofire.download(url).response { (response) in
-            print(response)
+        Alamofire.request(url)
+            .validate()
+            .response(queue: DispatchQueue.global()) { (response) in
+            guard let data = response.data else {
+                completion(nil, response.error)
+                return
+            }
+            completion(data, nil)
         }
         
     }

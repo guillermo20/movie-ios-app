@@ -108,6 +108,29 @@ public struct RepositoryHandler: Repository {
         }
     }
     
+    public func fetchMoviePosterImage(movie: Movie, completion: @escaping(Data?, Error) -> Void) {
+        guard let filePath = movie.posterPath else {
+            return
+        }
+        
+        service.donwloadData(byCategory: ImageEndpoint.defaultPosterURL(filePath)) { (data, error) in
+            guard let data = data else {
+                DispatchQueue.main.async {
+                    //completion(nil, error)
+                }
+                return
+            }
+            movie.posterImage = data
+            
+            //saves the change in the NSManagedOject in the db
+            self.database.save()
+            
+            DispatchQueue.main.async {
+                //completion(data, error)
+            }
+        }
+    }
+    
     public func fetchTVSeries() {
         
     }
