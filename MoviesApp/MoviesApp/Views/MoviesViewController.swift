@@ -11,7 +11,7 @@ import MovieDBRepository
 import MovieDataBase
 
 class MoviesViewController: UIViewController, UICollectionViewDelegate
-, UICollectionViewDataSource , MoviesViewDelegate {
+, UICollectionViewDataSource, MoviesViewDelegate {
  
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -35,12 +35,6 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate
     func setUpCollectionView() {
         collectionView.dataSource = self
         collectionView.delegate = self
-//        collectionView.register(UINib(nibName: PosterViewCell.indentifier, bundle: nil)
-//            , forCellWithReuseIdentifier: PosterViewCell.indentifier)
-//        let layout = UICollectionViewFlowLayout()
-//        layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
-//        layout.scrollDirection = .vertical
-
     }
     
     // MARK: Collection delegate functions
@@ -52,19 +46,25 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PosterViewCell.indentifier, for: indexPath) as! PosterViewCell
         if let data = moviesList[indexPath.item].posterImage {
             cell.posterImageView.image = UIImage(data: data)
+        } else {
+            presenter.fetchMovieImage(movie: moviesList[indexPath.item]) { (data) in
+                if let data = data {
+                    cell.posterImageView.image = UIImage(data: data)
+                }
+            }
         }
         return cell
     }
     
-    // MARK: MVP view delegate functions
-    func displayMovies(movies: [Movie]) {
-        moviesList = movies
-        presenter.fetchMovieImage(movie: movies[0])
-        collectionView.reloadData()
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if (indexPath.row == moviesList.count - 1 ) {
+            presenter.fetchMovies(moreData: true)
+        }
     }
     
-    func updateMovieImage(data: Data) {
-        moviesList[0].posterImage = data
+    // MARK: MVP view delegate functions
+    func displayMovies(movies: [Movie]) {
+        moviesList.append(contentsOf: movies)
         collectionView.reloadData()
     }
     
@@ -72,4 +72,28 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate
         //todo:
     }
     
+}
+
+// MARK:
+extension MoviesViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView
+        , layout collectionViewLayout: UICollectionViewLayout
+        , sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let width = self.collectionView.bounds.width/3.0
+        let height = width*1.499 //calculated height
+        return CGSize(width: width, height: height)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets.zero
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
 }

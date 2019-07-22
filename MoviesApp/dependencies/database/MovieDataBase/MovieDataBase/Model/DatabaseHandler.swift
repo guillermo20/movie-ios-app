@@ -37,10 +37,12 @@ public struct DatabaseHandler: Storage {
     
     
     public func fetch<T: DatabaseObject>(type: T.Type, predicate: NSPredicate?, sorted: Sorted?, completion: @escaping ([T]?) -> ()) {
-        guard let result = dataController.fetchObject(type: type, predicate: predicate!) else {
-            return
+        dataController.backgroundContext.perform {
+            guard let result = self.dataController.fetchObject(type: type, predicate: predicate) else {
+                return
+            }
+            completion(result)
         }
-        completion(result)
     }
     
     

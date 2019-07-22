@@ -28,7 +28,6 @@ class DataController {
             fatalError("Error initializing mom from: \(modelURL)")
         }
         persistentContainer = NSPersistentContainer(name: modelName, managedObjectModel: mom)
-        
         backgroundContext = persistentContainer.newBackgroundContext()
     }
     
@@ -62,9 +61,11 @@ class DataController {
         return object as! T
     }
     
-    func fetchObject<T: DatabaseObject>(type: T.Type, predicate: NSPredicate) -> [T]? {
+    func fetchObject<T: DatabaseObject>(type: T.Type, predicate: NSPredicate?) -> [T]? {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: String(describing: type.self))
-        request.predicate = predicate
+        if let predicate = predicate {
+            request.predicate = predicate
+        }
         //todo: fix this try?
         let result = try? self.backgroundContext.fetch(request)
         return result as! [T]

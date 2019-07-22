@@ -12,7 +12,6 @@ import MovieDataBase
 protocol MoviesViewDelegate: NSObjectProtocol {
     
     func displayMovies(movies: [Movie])
-    func updateMovieImage(data: Data)
     func showError(message: String)
     
 }

@@ -12,7 +12,13 @@ import MovieDataBase
 public protocol Repository {
     
 
-    func fetchMovies(completion: @escaping ([Movie]?, Error?) -> Void)
+    func fetchMovies(pageNumber: Int, completion: @escaping ([Movie]?, Error?) -> Void)
     func fetchMovieImage(movie: Movie, imageType: ImageType, completion: @escaping(Data?, Error?) -> Void)
 
+}
+
+extension Repository {
+    func fetchMovies(pageNumber: Int = 1, completion: @escaping ([Movie]?, Error?) -> Void) {
+        fetchMovies(pageNumber: pageNumber, completion: completion)
+    }
 }

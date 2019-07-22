@@ -14,6 +14,7 @@
         <attribute name="originalLanguage" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="originalTitle" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="overview" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pageNumber" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="popularity" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="posterImage" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <attribute name="posterPath" optional="YES" attributeType="String" syncable="YES"/>
@@ -40,7 +41,7 @@
     </entity>
     <elements>
         <element name="Genre" positionX="143.3046875" positionY="246.6875" width="128" height="103"/>
-        <element name="Movie" positionX="-63" positionY="-18" width="128" height="285"/>
+        <element name="Movie" positionX="-63" positionY="-18" width="128" height="300"/>
         <element name="TVSerie" positionX="350.28515625" positionY="7.34765625" width="128" height="223"/>
     </elements>
 </model>

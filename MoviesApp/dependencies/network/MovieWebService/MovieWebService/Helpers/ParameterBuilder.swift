@@ -9,21 +9,21 @@
 import Foundation
 
 ///note: apikey is not included here bc it is always required by the api so it is embedded into the network request
-class ParameterBuilder {
+public class ParameterBuilder {
     
     private var parameters: [String: Any]
     
-    init() {
+    public init() {
         parameters = [String: Any]()
     }
     
     @discardableResult
-    func pageNumber(page: Int) -> ParameterBuilder {
+    public func pageNumber(page: Int) -> ParameterBuilder {
         parameters["page"] = page
         return self
     }
     
-    func build() -> [String: Any] {
+    public func build() -> [String: Any] {
         return parameters
     }
 }

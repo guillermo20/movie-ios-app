@@ -42,7 +42,9 @@ public struct WebServiceClient: Service {
                 
                 // if there is no data then we should call the completion closure with an error
                 guard let data = response.data else {
-                    completion(nil, response.error)
+                    DispatchQueue.main.async {
+                        completion(nil, response.error)
+                    }
                     return
                 }
                 
@@ -50,9 +52,13 @@ public struct WebServiceClient: Service {
                 do {
                     let decoder = JSONDecoder()
                     let response = try decoder.decode(withResponseType, from: data)
-                    completion(response, nil)
+                    DispatchQueue.main.async {
+                        completion(response, nil)
+                    }
                 } catch {
-                    completion(nil, error)
+                    DispatchQueue.main.async {
+                        completion(nil, error)
+                    }
                 }
         }
     
@@ -66,11 +72,15 @@ public struct WebServiceClient: Service {
         Alamofire.request(url)
             .validate()
             .response(queue: DispatchQueue.global()) { (response) in
-            guard let data = response.data else {
-                completion(nil, response.error)
-                return
-            }
-            completion(data, nil)
+                guard let data = response.data else {
+                    DispatchQueue.main.async {
+                        completion(nil, response.error)
+                    }
+                    return
+                }
+                DispatchQueue.main.async {
+                    completion(data, nil)
+                }
         }
         
     }

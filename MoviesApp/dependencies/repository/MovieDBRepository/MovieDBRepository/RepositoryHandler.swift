@@ -62,13 +62,13 @@ public struct RepositoryHandler: Repository {
         }
     }
     
-    public func fetchMovies(completion: @escaping ([Movie]?, Error?) -> Void) {
-        NSLog("calls the fetchMovie implementation")
+    public func fetchMovies(pageNumber: Int = 1, completion: @escaping ([Movie]?, Error?) -> Void) {
+        let parameters = ParameterBuilder().pageNumber(page: pageNumber).build()
         if service.isConnectedToInternet() {
-            service.loadData(byCategory: MovieEndpoint.topRated, withResponseType: MoviesResponse.self) { (response, error) in
+            service.loadData(byCategory: MovieEndpoint.topRated, withResponseType: MoviesResponse.self, withParameters: parameters) { (response, error) in
                 guard let results = response?.results else {
                     NSLog(error!.localizedDescription)
-                    self.fetchMoviesFromDatabase(completion: completion)
+                    self.fetchMoviesFromDatabase(pageNumber: pageNumber, completion: completion)
                     return
                 }
                 
@@ -80,22 +80,26 @@ public struct RepositoryHandler: Repository {
                     movieObj.title = item.title
                     movieObj.id = Int32(item.id)
                     movieObj.originalTitle = item.originalTitle
-                    // genres IDs
-                    // movieObj.releaseDate = Date(item.releaseDate
+                    movieObj.pageNumber = Int32(pageNumber)
+                    // todo: genres IDs
+                    // todo: movieObj.releaseDate = Date(item.releaseDate
                     movieList.append(movieObj)
+                    NSLog(item.title)
                 }
                 self.database.save()
-                DispatchQueue.main.async {
-                    completion(movieList, nil)
-                }
+                self.fetchMoviesFromDatabase(pageNumber: pageNumber, completion: completion)
+//                DispatchQueue.main.async {
+//                    completion(movieList, nil)
+//                }
             }
         } else {
-            self.fetchMoviesFromDatabase(completion: completion)
+            self.fetchMoviesFromDatabase(pageNumber: pageNumber, completion: completion)
         }
     }
     
-    private func fetchMoviesFromDatabase(completion: @escaping ([Movie]?, Error?) -> Void) {
-        database.fetch(type: Movie.self, predicate: nil, sorted: nil) { (movieList) in
+    private func fetchMoviesFromDatabase(pageNumber: Int, completion: @escaping ([Movie]?, Error?) -> Void) {
+        let predicate = NSPredicate(format: "pageNumber == %@", String(pageNumber))
+        database.fetch(type: Movie.self, predicate: predicate, sorted: nil) { (movieList) in
             guard let movieList = movieList else {
                 DispatchQueue.main.async {
                     completion(nil, MoviesError(message: "could not retrieve data from local store."))
@@ -140,10 +144,12 @@ public struct RepositoryHandler: Repository {
             }
             
             //saves the change in the NSManagedOject in the db
-            self.database.save()
+            DispatchQueue.global().async {
+                self.database.save()
+            }
             
             DispatchQueue.main.async {
-                completion(data, error)
+                completion(data, nil)
             }
         }
     }

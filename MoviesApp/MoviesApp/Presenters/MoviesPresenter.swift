@@ -17,6 +17,8 @@ class MoviesPresenter {
     
     private let repository: Repository
     
+    private var pageNumber = 1
+    
     init(repository: Repository) {
         self.repository = repository
     }
@@ -25,8 +27,13 @@ class MoviesPresenter {
         self.viewDelegate = viewDelegate
     }
     
-    func fetchMovies() {
-        self.repository.fetchMovies { (movies, error) in
+    func fetchMovies(moreData: Bool = false) {
+        if !moreData {
+            pageNumber = 1
+        } else {
+            pageNumber = pageNumber + 1
+        }
+        self.repository.fetchMovies(pageNumber: pageNumber) { (movies, error) in
             guard let movies = movies else {
                 self.viewDelegate?.showError(message: error?.localizedDescription ??
                     MessageConstants.genericErrorMessage)
@@ -36,14 +43,19 @@ class MoviesPresenter {
         }
     }
     
-    func fetchMovieImage(movie: Movie) {
+    func fetchMovieImage(movie: Movie, completion: @escaping (Data?) -> Void) {
         self.repository.fetchMovieImage(movie: movie, imageType: .posterImage) { (data, error) in
             guard let data = data else {
                 self.viewDelegate?.showError(message: MessageConstants.genericErrorMessage)
                 return
             }
-            self.viewDelegate?.updateMovieImage(data: data)
+            completion(data)
         }
     }
+    
+    
+//    func fetchMovieImage(movies: [Movie]) {
+//        self.repository.fetchMovieImage(movies: [Movie], imageType: .posterImage)
+//    }
     
 }
