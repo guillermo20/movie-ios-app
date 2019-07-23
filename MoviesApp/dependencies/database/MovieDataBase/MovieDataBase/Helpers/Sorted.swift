@@ -9,6 +9,11 @@
 import Foundation
 
 public struct Sorted {
-    var key: String
-    var ascending: Bool = true
+    
+    public init(key: String, ascending: Bool) {
+        self.key = key
+        self.ascending = ascending
+    }
+    let key: String
+    let ascending: Bool
 }

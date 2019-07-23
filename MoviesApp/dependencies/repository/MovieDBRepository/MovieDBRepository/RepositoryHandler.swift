@@ -71,26 +71,30 @@ public struct RepositoryHandler: Repository {
                     self.fetchMoviesFromDatabase(pageNumber: pageNumber, completion: completion)
                     return
                 }
-                
-                var movieList = [Movie]()
                 for item in results {
-                    let movieObj = self.database.createObject(type: Movie.self)
-                    movieObj.backdropPath = item.backdropPath
-                    movieObj.posterPath = item.posterPath
-                    movieObj.title = item.title
-                    movieObj.id = Int32(item.id)
-                    movieObj.originalTitle = item.originalTitle
-                    movieObj.pageNumber = Int32(pageNumber)
-                    // todo: genres IDs
-                    // todo: movieObj.releaseDate = Date(item.releaseDate
-                    movieList.append(movieObj)
+                    //need to build the NSpredicate here
                     NSLog(item.title)
+                    let predicate = NSPredicate(format: "id == %ld", item.id)
+                    self.database.fetch(type: Movie.self, predicate: predicate, sorted: nil, completion: { (movieList) in
+                        if let movie = movieList?.first {
+                            NSLog("title = %@ , id = %ld", movie.title!, movie.id)
+                        } else {
+                            let movieObj = self.database.createObject(type: Movie.self)
+                            movieObj.backdropPath = item.backdropPath
+                            movieObj.posterPath = item.posterPath
+                            movieObj.title = item.title
+                            movieObj.id = Int32(item.id)
+                            movieObj.originalTitle = item.originalTitle
+                            movieObj.pageNumber = Int32(pageNumber)
+                            // todo: genres IDs
+                            // todo: movieObj.releaseDate = Date(item.releaseDate
+                            
+                            
+                        }
+                    })
                 }
                 self.database.save()
                 self.fetchMoviesFromDatabase(pageNumber: pageNumber, completion: completion)
-//                DispatchQueue.main.async {
-//                    completion(movieList, nil)
-//                }
             }
         } else {
             self.fetchMoviesFromDatabase(pageNumber: pageNumber, completion: completion)
@@ -99,7 +103,7 @@ public struct RepositoryHandler: Repository {
     
     private func fetchMoviesFromDatabase(pageNumber: Int, completion: @escaping ([Movie]?, Error?) -> Void) {
         let predicate = NSPredicate(format: "pageNumber == %@", String(pageNumber))
-        database.fetch(type: Movie.self, predicate: predicate, sorted: nil) { (movieList) in
+        database.fetch(type: Movie.self, predicate: predicate, sorted: Sorted(key: "creationDate", ascending: true)) { (movieList) in
             guard let movieList = movieList else {
                 DispatchQueue.main.async {
                     completion(nil, MoviesError(message: "could not retrieve data from local store."))
@@ -134,20 +138,7 @@ public struct RepositoryHandler: Repository {
                 }
                 return
             }
-            
-            switch imageType {
-            case .backdropImage:
-                movie.backdropImage = data
-                break
-            case .posterImage:
-                movie.posterImage = data
-            }
-            
-            //saves the change in the NSManagedOject in the db
-            DispatchQueue.global().async {
-                self.database.save()
-            }
-            
+            self.database.save()
             DispatchQueue.main.async {
                 completion(data, nil)
             }

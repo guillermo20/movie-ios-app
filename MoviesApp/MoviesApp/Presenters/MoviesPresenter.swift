@@ -10,7 +10,6 @@ import Foundation
 import MovieDBRepository
 import MovieDataBase
 
-
 class MoviesPresenter {
     
     weak private var viewDelegate: MoviesViewDelegate?
@@ -50,6 +49,8 @@ class MoviesPresenter {
                 return
             }
             completion(data)
+            //todo: delete the completion handler
+            //viewdelegate.updateMovieImage(movie,data)
         }
     }
     

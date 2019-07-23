@@ -10,6 +10,7 @@
         <attribute name="adult" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="backdropImage" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="backdropPath" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="creationDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="originalLanguage" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="originalTitle" optional="YES" attributeType="String" syncable="YES"/>
@@ -41,7 +42,7 @@
     </entity>
     <elements>
         <element name="Genre" positionX="143.3046875" positionY="246.6875" width="128" height="103"/>
-        <element name="Movie" positionX="-63" positionY="-18" width="128" height="300"/>
+        <element name="Movie" positionX="-63" positionY="-18" width="128" height="313"/>
         <element name="TVSerie" positionX="350.28515625" positionY="7.34765625" width="128" height="223"/>
     </elements>
 </model>

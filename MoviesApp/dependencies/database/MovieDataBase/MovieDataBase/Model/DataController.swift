@@ -13,7 +13,7 @@ class DataController {
     
     let persistentContainer: NSPersistentContainer
     
-    var viewContext:NSManagedObjectContext {
+    var viewContext: NSManagedObjectContext {
         return persistentContainer.viewContext
     }
     
@@ -52,7 +52,7 @@ class DataController {
     // MARK: Helper Functions
     
     //creates an empty NSManagedObject given the type passed through the parameter
-    func createObject<T: DatabaseObject>(type: T.Type) -> T{
+    func createObject<T: DatabaseObject>(type: T.Type) -> T {
         
         let entity = NSEntityDescription.entity(forEntityName: String(describing: T.self),
                                                 in: backgroundContext)!
@@ -61,8 +61,11 @@ class DataController {
         return object as! T
     }
     
-    func fetchObject<T: DatabaseObject>(type: T.Type, predicate: NSPredicate?) -> [T]? {
+    func fetchObject<T: DatabaseObject>(type: T.Type, predicate: NSPredicate?, sorted: Sorted?) -> [T]? {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: String(describing: type.self))
+        if let sorted = sorted {
+            request.sortDescriptors = [NSSortDescriptor(key: sorted.key, ascending: sorted.ascending)]
+        }
         if let predicate = predicate {
             request.predicate = predicate
         }
