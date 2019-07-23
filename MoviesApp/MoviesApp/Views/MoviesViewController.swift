@@ -44,6 +44,7 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PosterViewCell.indentifier, for: indexPath) as! PosterViewCell
+        cell.posterImageView.image = nil
         if let data = moviesList[indexPath.item].posterImage {
             cell.posterImageView.image = UIImage(data: data)
         } else {

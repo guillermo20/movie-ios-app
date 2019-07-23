@@ -138,10 +138,10 @@ public struct RepositoryHandler: Repository {
                 }
                 return
             }
-            self.database.save()
             DispatchQueue.main.async {
                 completion(data, nil)
             }
+            self.database.save()
         }
     }
     
