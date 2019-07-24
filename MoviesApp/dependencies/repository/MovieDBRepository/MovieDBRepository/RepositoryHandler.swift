@@ -79,16 +79,19 @@ public struct RepositoryHandler: Repository {
                         if let movie = movieList?.first {
                             NSLog("title = %@ , id = %ld", movie.title!, movie.id)
                         } else {
-                            let movieObj = self.database.createObject(type: Movie.self)
-                            movieObj.backdropPath = item.backdropPath
-                            movieObj.posterPath = item.posterPath
-                            movieObj.title = item.title
-                            movieObj.id = Int32(item.id)
-                            movieObj.originalTitle = item.originalTitle
-                            movieObj.pageNumber = Int32(pageNumber)
-                            // todo: genres IDs
-                            // todo: movieObj.releaseDate = Date(item.releaseDate
-                            
+                            self.database.createObject(type: Movie.self) { movieObj in
+                                movieObj.backdropPath = item.backdropPath
+                                movieObj.posterPath = item.posterPath
+                                movieObj.title = item.title
+                                movieObj.id = Int32(item.id)
+                                movieObj.originalTitle = item.originalTitle
+                                movieObj.pageNumber = Int32(pageNumber)
+                                self.database.save()
+                                // todo: genres IDs
+                                // todo: movieObj.releaseDate = Date(item.releaseDate
+                                
+                                
+                            }
                             
                         }
                     })
@@ -116,7 +119,7 @@ public struct RepositoryHandler: Repository {
         }
     }
     
-    public func fetchMovieImage(movie: Movie, imageType: ImageType, completion: @escaping(Data?, Error?) -> Void) {
+    public func fetchMovieImage(movie: Movie, imageType: ImageType, completion: @escaping(Movie?, Error?) -> Void) {
         guard let filePath = movie.posterPath else {
             return
         }
@@ -139,9 +142,17 @@ public struct RepositoryHandler: Repository {
                 return
             }
             DispatchQueue.main.async {
-                completion(data, nil)
+                switch imageType {
+                case .backdropImage:
+                    movie.backdropImage = data
+                    break
+                case .posterImage:
+                    movie.posterImage = data
+                    break
+                }
+                self.database.save()
+                completion(movie, nil)
             }
-            self.database.save()
         }
     }
     

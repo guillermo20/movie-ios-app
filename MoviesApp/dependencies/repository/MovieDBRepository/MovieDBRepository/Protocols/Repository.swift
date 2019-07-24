@@ -13,7 +13,7 @@ public protocol Repository {
     
 
     func fetchMovies(pageNumber: Int, completion: @escaping ([Movie]?, Error?) -> Void)
-    func fetchMovieImage(movie: Movie, imageType: ImageType, completion: @escaping(Data?, Error?) -> Void)
+    func fetchMovieImage(movie: Movie, imageType: ImageType, completion: @escaping(Movie?, Error?) -> Void)
 
 }
 

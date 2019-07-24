@@ -14,7 +14,7 @@ public protocol Storage {
     init(dataModelName: DataBaseName)
     
     func loadInitConfig()
-    func createObject<T: DatabaseObject>(type: T.Type) -> T
+    func createObject<T: DatabaseObject>(type: T.Type, completion: @escaping(T) -> Void)
     func save()
     func delete(object: DatabaseObject, completion: @escaping () -> Void)
     func fetch<T: DatabaseObject>(type: T.Type, predicate: NSPredicate?, sorted: Sorted?, completion: @escaping ([T]?) -> ())

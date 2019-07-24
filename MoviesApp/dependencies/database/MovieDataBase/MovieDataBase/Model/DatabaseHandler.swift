@@ -37,20 +37,22 @@ public struct DatabaseHandler: Storage {
     
     
     public func fetch<T: DatabaseObject>(type: T.Type, predicate: NSPredicate?, sorted: Sorted?, completion: @escaping ([T]?) -> ()) {
-        dataController.backgroundContext.perform {
+//        dataController.backgroundContext.perform {
             guard let result = self.dataController.fetchObject(type: type, predicate: predicate, sorted: sorted) else {
                 return
             }
-            DispatchQueue.main.async {
+//            DispatchQueue.main.async {
                 completion(result)
-            }
-        }
+//            }
+//        }
     }
     
     
-    public func createObject<T: DatabaseObject>(type: T.Type) -> T {
-        let result = dataController.createObject(type: type)
-        return result
+    public func createObject<T: DatabaseObject>(type: T.Type, completion: @escaping(T) -> Void) {
+        dataController.backgroundContext.perform {
+            let result = self.dataController.createObject(type: type)
+            completion(result)
+        }
     }
     
     

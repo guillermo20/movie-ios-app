@@ -57,7 +57,10 @@ class DataController {
         let entity = NSEntityDescription.entity(forEntityName: String(describing: T.self),
                                                 in: backgroundContext)!
         
-        let object = NSManagedObject(entity: entity, insertInto: backgroundContext)
+        var object: NSManagedObject!
+        backgroundContext.performAndWait {
+            object = NSManagedObject(entity: entity, insertInto: backgroundContext)
+        }
         return object as! T
     }
     
@@ -70,7 +73,7 @@ class DataController {
             request.predicate = predicate
         }
         //todo: fix this try?
-        let result = try? self.backgroundContext.fetch(request)
+        let result = try? self.viewContext.fetch(request)
         return result as! [T]
     }
 }

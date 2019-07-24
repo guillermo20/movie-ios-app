@@ -48,9 +48,9 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate
         if let data = moviesList[indexPath.item].posterImage {
             cell.posterImageView.image = UIImage(data: data)
         } else {
-            presenter.fetchMovieImage(movie: moviesList[indexPath.item]) { (data) in
-                if let data = data {
-                    cell.posterImageView.image = UIImage(data: data)
+            presenter.fetchMovieImage(movie: moviesList[indexPath.item]) { (movie) in
+                if let imageData = movie?.posterImage {
+                    cell.posterImageView.image = UIImage(data: imageData)
                 }
             }
         }

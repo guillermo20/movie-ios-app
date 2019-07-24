@@ -42,21 +42,14 @@ class MoviesPresenter {
         }
     }
     
-    func fetchMovieImage(movie: Movie, completion: @escaping (Data?) -> Void) {
-        self.repository.fetchMovieImage(movie: movie, imageType: .posterImage) { (data, error) in
-            guard let data = data else {
+    func fetchMovieImage(movie: Movie, completion: @escaping (Movie?) -> Void) {
+        self.repository.fetchMovieImage(movie: movie, imageType: .posterImage) { (movie, error) in
+            guard let movie = movie else {
                 self.viewDelegate?.showError(message: MessageConstants.genericErrorMessage)
                 return
             }
-            completion(data)
-            //todo: delete the completion handler
-            //viewdelegate.updateMovieImage(movie,data)
+            completion(movie)
         }
     }
-    
-    
-//    func fetchMovieImage(movies: [Movie]) {
-//        self.repository.fetchMovieImage(movies: [Movie], imageType: .posterImage)
-//    }
     
 }
