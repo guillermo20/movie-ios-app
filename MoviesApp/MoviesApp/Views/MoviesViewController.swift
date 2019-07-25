@@ -43,15 +43,17 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PosterViewCell.indentifier, for: indexPath) as! PosterViewCell
+        cell.tag = indexPath.item
         cell.posterImageView.image = nil
-        
         NSLog("title = %@ ",  moviesList[indexPath.item].title ?? "novalue")
         if let data = moviesList[indexPath.item].posterImage {
             cell.posterImageView.image = UIImage(data: data)
         } else {
             presenter.fetchMovieImage(movie: moviesList[indexPath.item]) { (movie) in
                 if let imageData = movie?.posterImage {
-                    cell.posterImageView.image = UIImage(data: imageData)
+                    if cell.tag == indexPath.item {
+                        cell.posterImageView.image = UIImage(data: imageData)
+                    }
                 }
             }
         }
