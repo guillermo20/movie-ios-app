@@ -24,7 +24,14 @@ public struct DatabaseHandler: Storage {
     
     public func save() {
         dataController.backgroundContext.perform {
-            try? self.dataController.backgroundContext.save()
+            if self.dataController.backgroundContext.hasChanges {
+                try? self.dataController.backgroundContext.save()
+            }
+        }
+        dataController.viewContext.perform {
+            if self.dataController.viewContext.hasChanges {
+                try? self.dataController.viewContext.save()
+            }
         }
     }
     
@@ -37,14 +44,10 @@ public struct DatabaseHandler: Storage {
     
     
     public func fetch<T: DatabaseObject>(type: T.Type, predicate: NSPredicate?, sorted: Sorted?, completion: @escaping ([T]?) -> ()) {
-//        dataController.backgroundContext.perform {
-            guard let result = self.dataController.fetchObject(type: type, predicate: predicate, sorted: sorted) else {
-                return
-            }
-//            DispatchQueue.main.async {
-                completion(result)
-//            }
-//        }
+        guard let result = self.dataController.fetchObject(type: type, predicate: predicate, sorted: sorted) else {
+            return
+        }
+        completion(result)
     }
     
     

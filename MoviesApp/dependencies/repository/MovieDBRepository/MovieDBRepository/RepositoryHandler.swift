@@ -15,7 +15,7 @@ import MovieDataBase
 /// all ui calls should have been abstracted meaning that repository
 /// handles all the complex logic from retreiving data from remote api
 /// and saving it into the local store
-public struct RepositoryHandler: Repository {
+public class RepositoryHandler: Repository {
     
     private let database: Storage
     
@@ -25,6 +25,9 @@ public struct RepositoryHandler: Repository {
         self.database = database
         self.service = service
         self.database.loadInitConfig()
+        NotificationCenter.default.addObserver(self
+            , selector: #selector(appEnteredBackground)
+            , name: UIApplication.didEnterBackgroundNotification, object: nil)
     }
     
     func loadGenres(completion: @escaping ([Genre]?, Error?) -> Void) {
@@ -72,8 +75,6 @@ public struct RepositoryHandler: Repository {
                     return
                 }
                 for item in results {
-                    //need to build the NSpredicate here
-                    NSLog(item.title)
                     let predicate = NSPredicate(format: "id == %ld", item.id)
                     self.database.fetch(type: Movie.self, predicate: predicate, sorted: nil, completion: { (movieList) in
                         if let movie = movieList?.first {
@@ -87,12 +88,7 @@ public struct RepositoryHandler: Repository {
                                 movieObj.originalTitle = item.originalTitle
                                 movieObj.pageNumber = Int32(pageNumber)
                                 self.database.save()
-                                // todo: genres IDs
-                                // todo: movieObj.releaseDate = Date(item.releaseDate
-                                
-                                
                             }
-                            
                         }
                     })
                 }
@@ -106,7 +102,7 @@ public struct RepositoryHandler: Repository {
     
     private func fetchMoviesFromDatabase(pageNumber: Int, completion: @escaping ([Movie]?, Error?) -> Void) {
         let predicate = NSPredicate(format: "pageNumber == %@", String(pageNumber))
-        database.fetch(type: Movie.self, predicate: predicate, sorted: Sorted(key: "creationDate", ascending: true)) { (movieList) in
+        database.fetch(type: Movie.self, predicate: nil, sorted: Sorted(key: "creationDate", ascending: true)) { (movieList) in
             guard let movieList = movieList else {
                 DispatchQueue.main.async {
                     completion(nil, MoviesError(message: "could not retrieve data from local store."))
@@ -154,6 +150,11 @@ public struct RepositoryHandler: Repository {
                 completion(movie, nil)
             }
         }
+    }
+    
+    @objc private func appEnteredBackground() {
+        NSLog("entered appEnteredBackground")
+        self.database.save()
     }
     
 }

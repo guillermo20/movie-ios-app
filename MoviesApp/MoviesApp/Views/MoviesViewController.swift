@@ -10,8 +10,7 @@ import UIKit
 import MovieDBRepository
 import MovieDataBase
 
-class MoviesViewController: UIViewController, UICollectionViewDelegate
-, UICollectionViewDataSource, MoviesViewDelegate {
+class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
  
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -39,43 +38,45 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate
     
     // MARK: Collection delegate functions
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return moviesList.count
+        return moviesList.count + 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PosterViewCell.indentifier, for: indexPath) as! PosterViewCell
         cell.posterImageView.image = nil
-        if let data = moviesList[indexPath.item].posterImage {
-            cell.posterImageView.image = UIImage(data: data)
-        } else {
-            presenter.fetchMovieImage(movie: moviesList[indexPath.item]) { (movie) in
-                if let imageData = movie?.posterImage {
-                    cell.posterImageView.image = UIImage(data: imageData)
+        if indexPath.row != moviesList.count {
+            if let data = moviesList[indexPath.item].posterImage {
+                cell.posterImageView.image = UIImage(data: data)
+            } else {
+                presenter.fetchMovieImage(movie: moviesList[indexPath.item]) { (movie) in
+                    if let imageData = movie?.posterImage {
+                        cell.posterImageView.image = UIImage(data: imageData)
+                    }
                 }
             }
-        }
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if (indexPath.row == moviesList.count - 1 ) {
+        } else {
             presenter.fetchMovies(moreData: true)
         }
+        
+        return cell
     }
+
+}
+
+// MARK: MVP view delegate functions
+extension MoviesViewController: MoviesViewDelegate{
     
-    // MARK: MVP view delegate functions
     func displayMovies(movies: [Movie]) {
-        moviesList.append(contentsOf: movies)
+        moviesList = movies
         collectionView.reloadData()
     }
     
     func showError(message: String) {
         //todo:
     }
-    
 }
 
-// MARK:
+// MARK: extension with UICollectionViewDelegateFlowLayout
 extension MoviesViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView
         , layout collectionViewLayout: UICollectionViewLayout
