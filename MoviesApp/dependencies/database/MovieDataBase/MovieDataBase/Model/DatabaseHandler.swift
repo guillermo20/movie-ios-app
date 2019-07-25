@@ -31,11 +31,6 @@ public struct DatabaseHandler: Storage {
         DispatchQueue.main.async {
             completion?()
         }
-//        dataController.viewContext.perform {
-//            if self.dataController.viewContext.hasChanges {
-//                try? self.dataController.viewContext.save()
-//            }
-//        }
     }
     
     public func delete(object: DatabaseObject, completion: @escaping () -> Void) {

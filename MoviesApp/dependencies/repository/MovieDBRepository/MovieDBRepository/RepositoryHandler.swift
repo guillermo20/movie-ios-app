@@ -78,7 +78,7 @@ public class RepositoryHandler: Repository {
                     let predicate = NSPredicate(format: "id == %ld", item.id)
                     self.database.fetch(type: Movie.self, predicate: predicate, sorted: nil, completion: { (movieList) in
                         if let movie = movieList?.first {
-                            NSLog("title = %@ , id = %ld", movie.title!, movie.id)
+                            NSLog("title = %@ , id = %ld, pagenumber = %ld", movie.title!, movie.id, pageNumber)
                         } else {
                             self.database.createObject(type: Movie.self) { movieObj in
                                 movieObj.backdropPath = item.backdropPath

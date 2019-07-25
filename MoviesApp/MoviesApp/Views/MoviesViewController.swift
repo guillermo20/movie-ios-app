@@ -38,36 +38,37 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     // MARK: Collection delegate functions
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return moviesList.count + 1
+        return moviesList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PosterViewCell.indentifier, for: indexPath) as! PosterViewCell
         cell.posterImageView.image = nil
-        if indexPath.item != moviesList.count {
-            NSLog("title = %@ ",  moviesList[indexPath.item].title ?? "novalue")
-            if let data = moviesList[indexPath.item].posterImage {
-                cell.posterImageView.image = UIImage(data: data)
-            } else {
-                presenter.fetchMovieImage(movie: moviesList[indexPath.item]) { (movie) in
-                    if let imageData = movie?.posterImage {
-                        cell.posterImageView.image = UIImage(data: imageData)
-                    }
+        
+        NSLog("title = %@ ",  moviesList[indexPath.item].title ?? "novalue")
+        if let data = moviesList[indexPath.item].posterImage {
+            cell.posterImageView.image = UIImage(data: data)
+        } else {
+            presenter.fetchMovieImage(movie: moviesList[indexPath.item]) { (movie) in
+                if let imageData = movie?.posterImage {
+                    cell.posterImageView.image = UIImage(data: imageData)
                 }
             }
-        } else {
-            presenter.fetchMovies(moreData: true)
         }
         return cell
     }
 
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if indexPath.item == moviesList.count - 1 {
+            presenter.fetchMovies(moreData: true)
+        }
+    }
 }
 
 // MARK: MVP view delegate functions
 extension MoviesViewController: MoviesViewDelegate{
     
     func displayMovies(movies: [Movie]) {
-//        moviesList = movies
         moviesList.append(contentsOf: movies)
         collectionView.reloadData()
     }
