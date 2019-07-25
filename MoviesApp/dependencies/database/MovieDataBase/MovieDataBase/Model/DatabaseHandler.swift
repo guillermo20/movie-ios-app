@@ -22,17 +22,20 @@ public struct DatabaseHandler: Storage {
     
     // MARK: Storage protocol functions
     
-    public func save() {
-        dataController.backgroundContext.perform {
+    public func save(completion: (() -> Void)?) {
+        dataController.backgroundContext.performAndWait {
             if self.dataController.backgroundContext.hasChanges {
                 try? self.dataController.backgroundContext.save()
             }
         }
-        dataController.viewContext.perform {
-            if self.dataController.viewContext.hasChanges {
-                try? self.dataController.viewContext.save()
-            }
+        DispatchQueue.main.async {
+            completion?()
         }
+//        dataController.viewContext.perform {
+//            if self.dataController.viewContext.hasChanges {
+//                try? self.dataController.viewContext.save()
+//            }
+//        }
     }
     
     public func delete(object: DatabaseObject, completion: @escaping () -> Void) {

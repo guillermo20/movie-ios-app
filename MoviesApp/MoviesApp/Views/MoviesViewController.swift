@@ -44,7 +44,8 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PosterViewCell.indentifier, for: indexPath) as! PosterViewCell
         cell.posterImageView.image = nil
-        if indexPath.row != moviesList.count {
+        if indexPath.item != moviesList.count {
+            NSLog("title = %@ ",  moviesList[indexPath.item].title ?? "novalue")
             if let data = moviesList[indexPath.item].posterImage {
                 cell.posterImageView.image = UIImage(data: data)
             } else {
@@ -57,7 +58,6 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
         } else {
             presenter.fetchMovies(moreData: true)
         }
-        
         return cell
     }
 
@@ -67,7 +67,8 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
 extension MoviesViewController: MoviesViewDelegate{
     
     func displayMovies(movies: [Movie]) {
-        moviesList = movies
+//        moviesList = movies
+        moviesList.append(contentsOf: movies)
         collectionView.reloadData()
     }
     

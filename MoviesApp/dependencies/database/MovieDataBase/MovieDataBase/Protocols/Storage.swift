@@ -15,8 +15,14 @@ public protocol Storage {
     
     func loadInitConfig()
     func createObject<T: DatabaseObject>(type: T.Type, completion: @escaping(T) -> Void)
-    func save()
+    func save(completion: (() -> Void)?)
     func delete(object: DatabaseObject, completion: @escaping () -> Void)
     func fetch<T: DatabaseObject>(type: T.Type, predicate: NSPredicate?, sorted: Sorted?, completion: @escaping ([T]?) -> ())
 
+}
+
+public extension Storage {
+    func save(completion: (() -> Void)? = nil) {
+        save(completion: completion)
+    }
 }

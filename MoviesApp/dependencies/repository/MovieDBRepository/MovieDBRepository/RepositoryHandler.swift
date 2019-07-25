@@ -87,13 +87,13 @@ public class RepositoryHandler: Repository {
                                 movieObj.id = Int32(item.id)
                                 movieObj.originalTitle = item.originalTitle
                                 movieObj.pageNumber = Int32(pageNumber)
-                                self.database.save()
                             }
                         }
                     })
                 }
-                self.database.save()
-                self.fetchMoviesFromDatabase(pageNumber: pageNumber, completion: completion)
+                self.database.save() {
+                    self.fetchMoviesFromDatabase(pageNumber: pageNumber, completion: completion)
+                }
             }
         } else {
             self.fetchMoviesFromDatabase(pageNumber: pageNumber, completion: completion)
@@ -102,7 +102,7 @@ public class RepositoryHandler: Repository {
     
     private func fetchMoviesFromDatabase(pageNumber: Int, completion: @escaping ([Movie]?, Error?) -> Void) {
         let predicate = NSPredicate(format: "pageNumber == %@", String(pageNumber))
-        database.fetch(type: Movie.self, predicate: nil, sorted: Sorted(key: "creationDate", ascending: true)) { (movieList) in
+        database.fetch(type: Movie.self, predicate: predicate, sorted: Sorted(key: "creationDate", ascending: true)) { (movieList) in
             guard let movieList = movieList else {
                 DispatchQueue.main.async {
                     completion(nil, MoviesError(message: "could not retrieve data from local store."))
@@ -146,8 +146,9 @@ public class RepositoryHandler: Repository {
                     movie.posterImage = data
                     break
                 }
-                self.database.save()
-                completion(movie, nil)
+                self.database.save() {
+                    completion(movie, nil)
+                }
             }
         }
     }
