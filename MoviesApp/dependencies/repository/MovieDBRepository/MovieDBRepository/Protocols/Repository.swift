@@ -11,8 +11,10 @@ import MovieDataBase
 
 public protocol Repository {
     
-
+    // handles all the fetch movies logic from local/remote store.
     func fetchMovies(pageNumber: Int, completion: @escaping ([Movie]?, Error?) -> Void)
+    
+    // intended to load an image to the movie object being passed as a paremeter
     func fetchMovieImage(movie: Movie, imageType: ImageType, completion: @escaping(Movie?, Error?) -> Void)
 
 }

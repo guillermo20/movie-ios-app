@@ -43,6 +43,7 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PosterViewCell.indentifier, for: indexPath) as! PosterViewCell
+        //tags a cell so the images are loaded to the correspondent cell
         cell.tag = indexPath.item
         cell.posterImageView.image = nil
         NSLog("title = %@ ",  moviesList[indexPath.item].title ?? "novalue")
@@ -51,6 +52,7 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
         } else {
             presenter.fetchMovieImage(movie: moviesList[indexPath.item]) { (movie) in
                 if let imageData = movie?.posterImage {
+                    // validates that image is going to be set to the correct cell
                     if cell.tag == indexPath.item {
                         cell.posterImageView.image = UIImage(data: imageData)
                     }
@@ -62,6 +64,7 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
 
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if indexPath.item == moviesList.count - 1 {
+            // request more data as the user scrolls down
             presenter.fetchMovies(moreData: true)
         }
     }
@@ -85,7 +88,7 @@ extension MoviesViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView
         , layout collectionViewLayout: UICollectionViewLayout
         , sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
+        // calculates width and height so the are 3 colums per row.
         let width = self.collectionView.bounds.width/3.0
         let height = width*1.499 //calculated height
         return CGSize(width: width, height: height)

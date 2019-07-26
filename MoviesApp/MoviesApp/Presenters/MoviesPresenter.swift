@@ -26,6 +26,7 @@ class MoviesPresenter {
         self.viewDelegate = viewDelegate
     }
     
+    // fetches movie objects from repository and handles the page number requested by the user interaction
     func fetchMovies(moreData: Bool = false) {
         if !moreData {
             pageNumber = 1
@@ -42,6 +43,7 @@ class MoviesPresenter {
         }
     }
     
+    // loads a image directly to the Movie object
     func fetchMovieImage(movie: Movie, completion: @escaping (Movie?) -> Void) {
         self.repository.fetchMovieImage(movie: movie, imageType: .posterImage) { (movie, error) in
             guard let movie = movie else {
