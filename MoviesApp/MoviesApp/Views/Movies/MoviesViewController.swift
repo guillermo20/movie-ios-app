@@ -68,6 +68,14 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
             presenter.fetchMovies(moreData: true)
         }
     }
+    
+    // navigation implementation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let cell = sender as? UICollectionViewCell, let indexPath = collectionView.indexPath(for: cell) {
+            let controller = segue.destination as! MovieDetailsViewController
+            controller.movie = moviesList[indexPath.item]
+        }
+    }
 }
 
 // MARK: MVP view delegate functions
