@@ -74,19 +74,22 @@ public class RepositoryHandler: Repository {
                     self.fetchMoviesFromDatabase(pageNumber: pageNumber, completion: completion)
                     return
                 }
-                for item in results {
-                    let predicate = NSPredicate(format: "id == %ld", item.id)
-                    self.database.fetch(type: Movie.self, predicate: predicate, sorted: nil, completion: { (movieList) in
+                for remoteMovie in results {
+                    let predicate = NSPredicate(format: "id == %ld", remoteMovie.id)
+                    self.database.fetch(type: Movie.self, predicate: predicate, sorted: nil, completion: { [unowned self] (movieList) in
                         if let movie = movieList?.first {
                             NSLog("title = %@ , id = %ld, pagenumber = %ld", movie.title!, movie.id, pageNumber)
                         } else {
                             self.database.createObject(type: Movie.self) { movieObj in
-                                movieObj.backdropPath = item.backdropPath
-                                movieObj.posterPath = item.posterPath
-                                movieObj.title = item.title
-                                movieObj.id = Int32(item.id)
-                                movieObj.originalTitle = item.originalTitle
+                                movieObj.backdropPath = remoteMovie.backdropPath
+                                movieObj.posterPath = remoteMovie.posterPath
+                                movieObj.title = remoteMovie.title
+                                movieObj.id = Int32(remoteMovie.id)
+                                movieObj.originalTitle = remoteMovie.originalTitle
                                 movieObj.pageNumber = Int32(pageNumber)
+                                movieObj.popularity = remoteMovie.popularity
+                                movieObj.voteAverage = remoteMovie.voteAverage
+                                movieObj.releaseDate = remoteMovie.releaseDate.toDate()
                             }
                         }
                     })
@@ -116,17 +119,16 @@ public class RepositoryHandler: Repository {
     }
     
     public func fetchMovieImage(movie: Movie, imageType: ImageType, completion: @escaping(Movie?, Error?) -> Void) {
-        guard let filePath = movie.posterPath else {
-            return
-        }
-        
+        var filepath: String?
         var endpoint: Endpoint?
         switch imageType {
         case .backdropImage:
-            endpoint = ImageEndpoint.defaultBackdropURL(filePath)
+            filepath = movie.backdropPath
+            endpoint = ImageEndpoint.defaultBackdropURL(filepath!)
             break
         case .posterImage:
-            endpoint = ImageEndpoint.defaultPosterURL(filePath)
+            filepath = movie.posterPath
+            endpoint = ImageEndpoint.defaultPosterURL(filepath!)
             break
         }
         
