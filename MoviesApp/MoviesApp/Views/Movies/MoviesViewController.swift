@@ -18,7 +18,8 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
     private var moviesList = [Movie]()
     
     // repository should be injected with a dependency injector.
-    private let presenter = MoviesPresenter(repository: DependencyInjector.dependencies.resolveRepository())
+    private lazy var presenter = MoviesPresenter(repository: DependencyInjector.dependencies.resolveRepository()
+        , category: Category(rawValue: self.tabBarController!.selectedIndex)!)
     
     // MARK: UIViewController functions
     override func viewDidLoad() {
@@ -31,10 +32,11 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
         self.presenter.fetchMovies()
     }
     
-    func setUpCollectionView() {
+    private func setUpCollectionView() {
         collectionView.dataSource = self
         collectionView.delegate = self
     }
+    
     
     // MARK: Collection delegate functions
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

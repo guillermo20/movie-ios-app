@@ -18,8 +18,11 @@ class MoviesPresenter {
     
     private var pageNumber = 1
     
-    init(repository: Repository) {
+    private let category: Category
+    
+    init(repository: Repository, category: Category) {
         self.repository = repository
+        self.category = category
     }
     
     func setViewDelegate(viewDelegate: MoviesViewDelegate) {
@@ -33,7 +36,42 @@ class MoviesPresenter {
         } else {
             pageNumber = pageNumber + 1
         }
+        switch category {
+        case .topRated:
+            fetchTopRatedMovies()
+            break
+        case .upcoming:
+            fetchUpcomingMovies()
+            break
+        case .popular:
+            fetchPopularMovies()
+            break
+        }
+    }
+    private func fetchTopRatedMovies() {
         self.repository.fetchTopRatedMovies(pageNumber: pageNumber) { (movies, error) in
+            guard let movies = movies else {
+                self.viewDelegate?.showError(message: error?.localizedDescription ??
+                    MessageConstants.genericErrorMessage)
+                return
+            }
+            self.viewDelegate?.displayMovies(movies: movies)
+        }
+    }
+    
+    private func fetchUpcomingMovies() {
+        self.repository.fetchUpcomingMovies(pageNumber: pageNumber) { (movies, error) in
+            guard let movies = movies else {
+                self.viewDelegate?.showError(message: error?.localizedDescription ??
+                    MessageConstants.genericErrorMessage)
+                return
+            }
+            self.viewDelegate?.displayMovies(movies: movies)
+        }
+    }
+    
+    private func fetchPopularMovies() {
+        self.repository.fetchPopularMovies(pageNumber: pageNumber) { (movies, error) in
             guard let movies = movies else {
                 self.viewDelegate?.showError(message: error?.localizedDescription ??
                     MessageConstants.genericErrorMessage)

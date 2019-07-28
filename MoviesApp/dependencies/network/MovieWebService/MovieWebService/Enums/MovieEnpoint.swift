@@ -9,7 +9,7 @@
 import Foundation
 
 /// especifies the Movies endpoint and its categories
-public enum MovieEndpoint: Endpoint {
+public enum MovieEndpoint: String, Endpoint  {
     
     case topRated
     case popular
@@ -30,5 +30,7 @@ public enum MovieEndpoint: Endpoint {
         }
     }
     
-    
+    public var categoryDescription: String {
+        return self.rawValue
+    }
 }

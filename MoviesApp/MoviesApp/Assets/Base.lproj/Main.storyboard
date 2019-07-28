@@ -10,22 +10,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--TVSeries-->
-        <scene sceneID="gV8-Tz-ldo">
-            <objects>
-                <viewController id="YLv-c0-xJG" customClass="TVSeriesViewController" customModule="MoviesApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="NdL-Tz-Y9U">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="HoZ-qR-prF"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="TVSeries" image="series" id="sJU-c6-tko"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="1cQ-oR-J0k" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="598.55072463768124" y="355.58035714285711"/>
-        </scene>
         <!--Movies View Controller-->
         <scene sceneID="XTA-6O-Rn4">
             <objects>
@@ -86,7 +70,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E76-j7-QNn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1508.6956521739132" y="-292.63392857142856"/>
+            <point key="canvasLocation" x="2586.9565217391305" y="105.80357142857143"/>
         </scene>
         <!--Movie Details View Controller-->
         <scene sceneID="uhj-K3-ac8">
@@ -201,7 +185,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nFs-5e-VFC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2473.913043478261" y="-293.30357142857139"/>
+            <point key="canvasLocation" x="3766.666666666667" y="105.80357142857143"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="zQO-Xp-Zag">
@@ -214,12 +198,13 @@
                     </tabBar>
                     <connections>
                         <segue destination="nwE-xf-0D5" kind="relationship" relationship="viewControllers" id="zmz-ro-Q8P"/>
-                        <segue destination="YLv-c0-xJG" kind="relationship" relationship="viewControllers" id="Bdd-VM-orZ"/>
+                        <segue destination="ON3-3r-1ep" kind="relationship" relationship="viewControllers" id="Bdd-VM-orZ"/>
+                        <segue destination="IUR-G1-QQ4" kind="relationship" relationship="viewControllers" id="BBj-dI-lGd"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bu5-xk-w7G" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-317" y="32"/>
+            <point key="canvasLocation" x="-412" y="106"/>
         </scene>
         <!--Movies-->
         <scene sceneID="vAI-Wv-eU9">
@@ -238,14 +223,56 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5ON-SE-D9e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="598.55072463768124" y="-292.63392857142856"/>
+            <point key="canvasLocation" x="564" y="-601"/>
+        </scene>
+        <!--Popular-->
+        <scene sceneID="5sO-GE-x35">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ON3-3r-1ep" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Popular" image="popular" id="sJU-c6-tko"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="7Hk-YB-xuD">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="08x-LZ-hlK" kind="relationship" relationship="rootViewController" id="AkZ-aj-Nhk"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KiG-Ni-Ch8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="563.768115942029" y="105.80357142857143"/>
+        </scene>
+        <!--Upcoming-->
+        <scene sceneID="28M-uP-x8N">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="IUR-G1-QQ4" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Upcoming" image="upcoming" id="bDr-IH-VRx"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="bnh-oZ-rjl">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="08x-LZ-hlK" kind="relationship" relationship="rootViewController" id="UOQ-gk-OYB"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ogb-PT-pvd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="563.768115942029" y="831.69642857142856"/>
         </scene>
     </scenes>
     <resources>
         <image name="avgVoteImage" width="33.333332061767578" height="33.333332061767578"/>
         <image name="movies" width="30" height="30"/>
+        <image name="popular" width="30" height="30"/>
         <image name="popularityImage" width="33.333332061767578" height="33.333332061767578"/>
         <image name="releaseDateImage" width="33.333332061767578" height="33.333332061767578"/>
-        <image name="series" width="30" height="30"/>
+        <image name="upcoming" width="30" height="30"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="UOQ-gk-OYB"/>
+    </inferredMetricsTieBreakers>
 </document>

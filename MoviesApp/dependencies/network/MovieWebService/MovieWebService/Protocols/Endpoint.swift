@@ -10,4 +10,5 @@ import Foundation
 
 public protocol Endpoint {
     var url: URL? { get }
+    var categoryDescription: String { get }
 }

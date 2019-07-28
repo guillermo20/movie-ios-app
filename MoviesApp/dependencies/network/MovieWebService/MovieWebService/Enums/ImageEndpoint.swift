@@ -26,4 +26,8 @@ public enum ImageEndpoint: Endpoint {
             return "https://image.tmdb.org/t/p/w780\(filepath)"
         }
     }
+    
+    public var categoryDescription: String {
+        return ""
+    }
 }

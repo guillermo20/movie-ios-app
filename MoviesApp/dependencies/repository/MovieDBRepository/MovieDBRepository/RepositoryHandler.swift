@@ -36,7 +36,7 @@ public class RepositoryHandler: Repository {
             service.loadData(byCategory: category, withResponseType: MoviesResponse.self, withParameters: parameters) { (response, error) in
                 guard let results = response?.results else {
                     NSLog(error!.localizedDescription)
-                    self.fetchMoviesFromDatabase(pageNumber: pageNumber, completion: completion)
+                    self.fetchMoviesFromDatabase(pageNumber: pageNumber, category: category.categoryDescription, completion: completion)
                     return
                 }
                 for remoteMovie in results {
@@ -46,6 +46,7 @@ public class RepositoryHandler: Repository {
                             NSLog("title = %@ , id = %ld, pagenumber = %ld", movie.title!, movie.id, pageNumber)
                         } else {
                             self.database.createObject(type: Movie.self) { movieObj in
+                                movieObj.category = category.categoryDescription
                                 movieObj.backdropPath = remoteMovie.backdropPath
                                 movieObj.posterPath = remoteMovie.posterPath
                                 movieObj.title = remoteMovie.title
@@ -61,16 +62,16 @@ public class RepositoryHandler: Repository {
                     })
                 }
                 self.database.save() {
-                    self.fetchMoviesFromDatabase(pageNumber: pageNumber, completion: completion)
+                    self.fetchMoviesFromDatabase(pageNumber: pageNumber,category: category.categoryDescription, completion: completion)
                 }
             }
         } else {
-            self.fetchMoviesFromDatabase(pageNumber: pageNumber, completion: completion)
+            self.fetchMoviesFromDatabase(pageNumber: pageNumber,category: category.categoryDescription, completion: completion)
         }
     }
     
-    private func fetchMoviesFromDatabase(pageNumber: Int, completion: @escaping ([Movie]?, Error?) -> Void) {
-        let predicate = NSPredicate(format: "pageNumber == %@", String(pageNumber))
+    private func fetchMoviesFromDatabase(pageNumber: Int,category: String ,completion: @escaping ([Movie]?, Error?) -> Void) {
+        let predicate = NSPredicate(format: "(pageNumber == %@) AND (category == %@)", String(pageNumber), category)
         database.fetch(type: Movie.self, predicate: predicate, sorted: Sorted(key: "creationDate", ascending: true)) { (movieList) in
             guard let movieList = movieList else {
                 DispatchQueue.main.async {

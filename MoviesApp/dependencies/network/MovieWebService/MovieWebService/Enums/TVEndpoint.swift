@@ -27,4 +27,7 @@ public enum TVEndpoint: Endpoint {
         }
     }
     
+    public var categoryDescription: String {
+        return ""
+    }
 }

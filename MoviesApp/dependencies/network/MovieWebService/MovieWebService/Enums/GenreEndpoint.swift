@@ -24,4 +24,8 @@ public enum GenreEndpoint: Endpoint {
             return "https://api.themoviedb.org/3/genre/tv/list"
         }
     }
+    
+    public var categoryDescription: String {
+        return ""
+    }
 }
