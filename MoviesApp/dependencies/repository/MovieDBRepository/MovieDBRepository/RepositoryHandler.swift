@@ -155,6 +155,8 @@ public class RepositoryHandler: Repository {
         }
     }
     
+    
+    // todo: this responsibility should be handled on db not on repository abstraction
     @objc private func appEnteredBackground() {
         NSLog("entered appEnteredBackground")
         self.database.save()

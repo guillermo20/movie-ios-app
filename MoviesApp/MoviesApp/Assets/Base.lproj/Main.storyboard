@@ -96,24 +96,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ReleaseDate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9rj-Yl-OA9">
-                                <rect key="frame" x="30" y="345" width="81" height="17"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Popularity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rWz-GV-7FM">
-                                <rect key="frame" x="174.5" y="345" width="65" height="17"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="avgVote" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q9b-oY-F4Z">
-                                <rect key="frame" x="331.5" y="345" width="52.5" height="17"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WFY-qP-rmU">
                                 <rect key="frame" x="0.0" y="88" width="414" height="233"/>
                                 <color key="backgroundColor" red="0.78496736658669508" green="0.78496736658669508" blue="0.78496736658669508" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -121,8 +103,53 @@
                                     <constraint firstAttribute="width" secondItem="WFY-qP-rmU" secondAttribute="height" multiplier="16:9" id="jq7-2U-cay"/>
                                 </constraints>
                             </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ILX-9C-UHz">
-                                <rect key="frame" x="0.0" y="386" width="414" height="1"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="releaseDateImage" translatesAutoresizingMaskIntoConstraints="NO" id="1au-Fa-eG5" userLabel="Release Date Image View">
+                                <rect key="frame" x="30" y="345" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Hgz-Y6-2F7"/>
+                                    <constraint firstAttribute="width" constant="40" id="RhZ-DL-ZOt"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="popularityImage" translatesAutoresizingMaskIntoConstraints="NO" id="afl-2l-qea" userLabel="Popularity Image View">
+                                <rect key="frame" x="187" y="345" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="8yC-cL-441"/>
+                                    <constraint firstAttribute="height" constant="40" id="j8P-hT-o7R"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avgVoteImage" translatesAutoresizingMaskIntoConstraints="NO" id="ne5-i6-JEy" userLabel="Avg Vote Image View">
+                                <rect key="frame" x="344" y="345" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="WzH-zZ-5S1"/>
+                                    <constraint firstAttribute="width" constant="40" id="e3g-D3-YWt"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ReleaseDate" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9rj-Yl-OA9">
+                                <rect key="frame" x="30" y="393" width="40" height="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="gBM-Ka-119"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Popularity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rWz-GV-7FM">
+                                <rect key="frame" x="174.5" y="393" width="65" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="avgVote" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q9b-oY-F4Z">
+                                <rect key="frame" x="344" y="393" width="40" height="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="Z4l-24-yJ3"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ILX-9C-UHz" userLabel="Divider View">
+                                <rect key="frame" x="0.0" y="434" width="414" height="1"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="dkq-lo-MuT"/>
@@ -131,18 +158,25 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="rWz-GV-7FM" firstAttribute="top" secondItem="WFY-qP-rmU" secondAttribute="bottom" constant="24" id="1LI-wI-fZG"/>
                             <constraint firstItem="9rj-Yl-OA9" firstAttribute="leading" secondItem="6DN-f0-SvT" secondAttribute="leading" constant="30" id="3iP-Ce-zmZ"/>
+                            <constraint firstItem="afl-2l-qea" firstAttribute="top" secondItem="WFY-qP-rmU" secondAttribute="bottom" constant="24" id="6F2-4d-KzG"/>
+                            <constraint firstItem="afl-2l-qea" firstAttribute="centerX" secondItem="DcQ-fV-A1m" secondAttribute="centerX" id="7Kl-EC-4jV"/>
                             <constraint firstItem="6DN-f0-SvT" firstAttribute="trailing" secondItem="Q9b-oY-F4Z" secondAttribute="trailing" constant="30" id="HwC-7S-IYY"/>
+                            <constraint firstItem="9rj-Yl-OA9" firstAttribute="top" secondItem="1au-Fa-eG5" secondAttribute="bottom" constant="8" id="IzJ-8D-8Sv"/>
                             <constraint firstItem="WFY-qP-rmU" firstAttribute="leading" secondItem="6DN-f0-SvT" secondAttribute="leading" id="Kgq-cR-MXR"/>
-                            <constraint firstItem="Q9b-oY-F4Z" firstAttribute="top" secondItem="WFY-qP-rmU" secondAttribute="bottom" constant="24" id="NVZ-Ir-hDp"/>
+                            <constraint firstItem="1au-Fa-eG5" firstAttribute="leading" secondItem="6DN-f0-SvT" secondAttribute="leading" constant="30" id="LK6-oY-RMO"/>
+                            <constraint firstItem="afl-2l-qea" firstAttribute="centerX" secondItem="DcQ-fV-A1m" secondAttribute="centerX" id="Noh-ZC-LGg"/>
                             <constraint firstItem="WFY-qP-rmU" firstAttribute="top" secondItem="6DN-f0-SvT" secondAttribute="top" id="PI8-MF-Oda"/>
                             <constraint firstItem="ILX-9C-UHz" firstAttribute="trailing" secondItem="WFY-qP-rmU" secondAttribute="trailing" id="T2w-rq-jvG"/>
                             <constraint firstItem="WFY-qP-rmU" firstAttribute="trailing" secondItem="6DN-f0-SvT" secondAttribute="trailing" id="Ykt-ga-AeU"/>
                             <constraint firstItem="ILX-9C-UHz" firstAttribute="top" secondItem="9rj-Yl-OA9" secondAttribute="bottom" constant="24" id="ZlG-vC-8zK"/>
+                            <constraint firstItem="6DN-f0-SvT" firstAttribute="trailing" secondItem="ne5-i6-JEy" secondAttribute="trailing" constant="30" id="dsF-OY-CIf"/>
+                            <constraint firstItem="rWz-GV-7FM" firstAttribute="top" secondItem="afl-2l-qea" secondAttribute="bottom" constant="8" id="m8O-CN-bDx"/>
+                            <constraint firstItem="Q9b-oY-F4Z" firstAttribute="top" secondItem="ne5-i6-JEy" secondAttribute="bottom" constant="8" id="mfJ-Xm-eDv"/>
                             <constraint firstItem="ILX-9C-UHz" firstAttribute="leading" secondItem="WFY-qP-rmU" secondAttribute="leading" id="nSY-5N-1nZ"/>
+                            <constraint firstItem="ne5-i6-JEy" firstAttribute="top" secondItem="WFY-qP-rmU" secondAttribute="bottom" constant="24" id="ovR-4U-KUq"/>
                             <constraint firstItem="rWz-GV-7FM" firstAttribute="centerX" secondItem="DcQ-fV-A1m" secondAttribute="centerX" id="waS-P2-3cz"/>
-                            <constraint firstItem="9rj-Yl-OA9" firstAttribute="top" secondItem="WFY-qP-rmU" secondAttribute="bottom" constant="24" id="xlx-gA-Eox"/>
+                            <constraint firstItem="1au-Fa-eG5" firstAttribute="top" secondItem="WFY-qP-rmU" secondAttribute="bottom" constant="24" id="z7C-xB-55v"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6DN-f0-SvT"/>
                     </view>
@@ -155,7 +189,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nFs-5e-VFC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2474" y="-293"/>
+            <point key="canvasLocation" x="2473.913043478261" y="-293.30357142857139"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="zQO-Xp-Zag">
@@ -196,7 +230,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="avgVoteImage" width="33.333332061767578" height="33.333332061767578"/>
         <image name="movies" width="30" height="30"/>
+        <image name="popularityImage" width="33.333332061767578" height="33.333332061767578"/>
+        <image name="releaseDateImage" width="33.333332061767578" height="33.333332061767578"/>
         <image name="series" width="30" height="30"/>
     </resources>
 </document>
