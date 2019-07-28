@@ -86,6 +86,7 @@ public class RepositoryHandler: Repository {
                                 movieObj.title = remoteMovie.title
                                 movieObj.id = Int32(remoteMovie.id)
                                 movieObj.originalTitle = remoteMovie.originalTitle
+                                movieObj.overview = remoteMovie.overview
                                 movieObj.pageNumber = Int32(pageNumber)
                                 movieObj.popularity = remoteMovie.popularity
                                 movieObj.voteAverage = remoteMovie.voteAverage

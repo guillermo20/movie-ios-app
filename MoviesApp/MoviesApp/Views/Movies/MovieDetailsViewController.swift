@@ -22,6 +22,7 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet weak var avgVoteLabel: UILabel!
     @IBOutlet weak var backdropImageView: UIImageView!
     
+    @IBOutlet weak var overviewTextView: UITextView!
     
     private let presenter = MovieDetailsPresenter(repository: DependencyInjector.dependencies.resolveRepository())
     
@@ -57,6 +58,9 @@ class MovieDetailsViewController: UIViewController {
         }
         if let avgVote = movie?.voteAverage {
             avgVoteLabel.text = String(format: "%.1f", avgVote)
+        }
+        if let overview = movie?.overview {
+            overviewTextView.text = overview
         }
     }
 }
