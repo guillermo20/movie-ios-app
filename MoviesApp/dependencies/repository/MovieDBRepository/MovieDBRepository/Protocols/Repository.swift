@@ -11,8 +11,10 @@ import MovieDataBase
 
 public protocol Repository {
     
-    // handles all the fetch movies logic from local/remote store.
-    func fetchMovies(pageNumber: Int, completion: @escaping ([Movie]?, Error?) -> Void)
+   
+    func fetchTopRatedMovies(pageNumber: Int, completion: @escaping ([Movie]?, Error?) -> Void)
+    func fetchPopularMovies(pageNumber: Int, completion: @escaping ([Movie]?, Error?) -> Void)
+    func fetchUpcomingMovies(pageNumber: Int, completion: @escaping ([Movie]?, Error?) -> Void)
     
     // intended to load an image to the movie object being passed as a paremeter
     func fetchMovieImage(movie: Movie, imageType: ImageType, completion: @escaping(Movie?, Error?) -> Void)
@@ -20,7 +22,13 @@ public protocol Repository {
 }
 
 extension Repository {
-    func fetchMovies(pageNumber: Int = 1, completion: @escaping ([Movie]?, Error?) -> Void) {
-        fetchMovies(pageNumber: pageNumber, completion: completion)
+    func fetchTopRatedMovies(pageNumber: Int = 1, completion: @escaping ([Movie]?, Error?) -> Void) {
+        fetchTopRatedMovies(pageNumber: pageNumber, completion: completion)
+    }
+    func fetchPopularMovies(pageNumber: Int = 1, completion: @escaping ([Movie]?, Error?) -> Void) {
+        fetchTopRatedMovies(pageNumber: pageNumber, completion: completion)
+    }
+    func fetchUpcomingMovies(pageNumber: Int = 1, completion: @escaping ([Movie]?, Error?) -> Void) {
+        fetchTopRatedMovies(pageNumber: pageNumber, completion: completion)
     }
 }

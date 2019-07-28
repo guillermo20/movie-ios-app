@@ -28,6 +28,6 @@ class PlistManager {
             return nil
         }
         
-        return fileContent[propertyName] as! String
+        return fileContent[propertyName] as? String
     }
 }

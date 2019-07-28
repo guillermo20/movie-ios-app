@@ -33,7 +33,7 @@ class MoviesPresenter {
         } else {
             pageNumber = pageNumber + 1
         }
-        self.repository.fetchMovies(pageNumber: pageNumber) { (movies, error) in
+        self.repository.fetchTopRatedMovies(pageNumber: pageNumber) { (movies, error) in
             guard let movies = movies else {
                 self.viewDelegate?.showError(message: error?.localizedDescription ??
                     MessageConstants.genericErrorMessage)

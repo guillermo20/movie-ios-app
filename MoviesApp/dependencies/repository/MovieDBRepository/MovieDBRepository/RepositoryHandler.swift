@@ -30,45 +30,10 @@ public class RepositoryHandler: Repository {
             , name: UIApplication.didEnterBackgroundNotification, object: nil)
     }
     
-    func loadGenres(completion: @escaping ([Genre]?, Error?) -> Void) {
-        
-        // verifies that the app has internet conectivity
-        if !service.isConnectedToInternet() {
-            DispatchQueue.main.async {
-                completion(nil, MoviesError(message: "app could not connect to internet"))
-            }
-            return
-        }
-        
-        // loads data from the remote api tv series genres
-        service.loadData(byCategory: GenreEndpoint.tvGenreList
-        ,withResponseType: GenreResponse.self) { (response, error) in
-            guard let responseTV = response else {
-                DispatchQueue.main.async {
-                    completion(nil, error)
-                }
-                return
-            }
-            // loads data from the remote api tv series genres
-            self.service.loadData(byCategory: GenreEndpoint.moviesGenreList
-                , withResponseType: GenreResponse.self, completion: { (response, error) in
-                    guard let responseMovie = response else {
-                        DispatchQueue.main.async {
-                            completion(nil, error)
-                        }
-                        return
-                    }
-                    var generes = responseTV.genres
-                    generes.append(contentsOf: responseMovie.genres)
-                    NSLog("genre tv series items = %i", generes.count)
-            })
-        }
-    }
-    
-    public func fetchMovies(pageNumber: Int = 1, completion: @escaping ([Movie]?, Error?) -> Void) {
+    private func fetchMovies(pageNumber: Int, category: Endpoint, completion: @escaping ([Movie]?, Error?) -> Void) {
         let parameters = ParameterBuilder().pageNumber(page: pageNumber).build()
         if service.isConnectedToInternet() {
-            service.loadData(byCategory: MovieEndpoint.topRated, withResponseType: MoviesResponse.self, withParameters: parameters) { (response, error) in
+            service.loadData(byCategory: category, withResponseType: MoviesResponse.self, withParameters: parameters) { (response, error) in
                 guard let results = response?.results else {
                     NSLog(error!.localizedDescription)
                     self.fetchMoviesFromDatabase(pageNumber: pageNumber, completion: completion)
@@ -156,6 +121,16 @@ public class RepositoryHandler: Repository {
         }
     }
     
+    
+    public func fetchTopRatedMovies(pageNumber: Int, completion: @escaping ([Movie]?, Error?) -> Void) {
+        fetchMovies(pageNumber: pageNumber, category: MovieEndpoint.topRated, completion: completion)
+    }
+    public func fetchPopularMovies(pageNumber: Int, completion: @escaping ([Movie]?, Error?) -> Void) {
+        fetchMovies(pageNumber: pageNumber, category: MovieEndpoint.popular, completion: completion)
+    }
+    public func fetchUpcomingMovies(pageNumber: Int, completion: @escaping ([Movie]?, Error?) -> Void) {
+        fetchMovies(pageNumber: pageNumber, category: MovieEndpoint.upcoming, completion: completion)
+    }
     
     // todo: this responsibility should be handled on db not on repository abstraction
     @objc private func appEnteredBackground() {

@@ -74,6 +74,6 @@ class DataController {
         }
         //todo: fix this try?
         let result = try? self.viewContext.fetch(request)
-        return result as! [T]
+        return result as? [T]
     }
 }
