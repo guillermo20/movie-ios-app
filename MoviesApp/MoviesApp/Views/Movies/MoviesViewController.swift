@@ -28,15 +28,41 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        setUpCollectionView()
+        setupViews()
+        setupNavBar()
         self.presenter.fetchMovies()
     }
     
-    private func setUpCollectionView() {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
+    private func setupViews() {
         collectionView.dataSource = self
         collectionView.delegate = self
     }
     
+    private func setupNavBar() {
+        let searchController = UISearchController(searchResultsController: nil)
+        let searchBar = searchController.searchBar
+        searchBar.delegate = self
+        searchBar.sizeToFit()
+        searchBar.searchBarStyle = .minimal
+        searchBar.placeholder = "Search by movie title"
+        searchBar.tintColor = UIColor.lightGray
+        searchBar.barTintColor = UIColor.lightGray
+        navigationItem.titleView = searchBar
+        searchBar.isTranslucent = true
+        if #available(iOS 11.0, *) {
+            searchBar.heightAnchor.constraint(equalToConstant: 44).isActive = true
+        }
+//        definesPresentationContext = true
+    }
     
     // MARK: Collection delegate functions
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -114,5 +140,11 @@ extension MoviesViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
+    }
+}
+
+extension MoviesViewController: UISearchBarDelegate {
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        NSLog("text being typed %@", searchBar.text ?? "default value")
     }
 }

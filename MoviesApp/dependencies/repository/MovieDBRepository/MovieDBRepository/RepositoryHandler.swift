@@ -12,8 +12,8 @@ import MovieDataBase
 
 /// repository handler. serves as a separator of the module layers.
 /// this separates the ui layer from the data layer,
-/// all ui calls should have been abstracted meaning that repository
-/// handles all the complex logic from retreiving data from remote api
+/// all ui calls have been abstracted meaning that repository
+/// handles all the complex logic like retreiving data from remote api
 /// and saving it into the local store
 public class RepositoryHandler: Repository {
     

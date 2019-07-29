@@ -22,14 +22,14 @@ public struct MoviesResponse: Codable, Response {
 // MARK: - ResultMovie
 public struct ResultMovie: Codable {
     public let voteCount, id: Int
-    public let video: Bool
+    public let video: Bool?
     public let voteAverage: Double
     public let title: String
     public let popularity: Double
-    public let posterPath, originalLanguage, originalTitle: String
-    public let genreIDS: [Int]
-    public let backdropPath: String
-    public let adult: Bool
+    public let posterPath, originalLanguage, originalTitle: String?
+    public let genreIDS: [Int]?
+    public let backdropPath: String?
+    public let adult: Bool?
     public let overview, releaseDate: String
     
     enum CodingKeys: String, CodingKey {

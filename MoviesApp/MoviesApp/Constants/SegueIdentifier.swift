@@ -10,5 +10,5 @@ import Foundation
 
 
 struct SegueIdentifier {
-    let movieDetail = "showMovieDetails"
+    let movieDetail = "showMovieDetail"
 }
