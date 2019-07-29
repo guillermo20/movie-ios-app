@@ -38,7 +38,7 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
     private func setupViews() {
         collectionView.dataSource = self
         collectionView.delegate = self
-        self.title = "The Movie App"
+        self.navigationItem.title = "The Movie App"
     }
     
     private func setupNavBar() {

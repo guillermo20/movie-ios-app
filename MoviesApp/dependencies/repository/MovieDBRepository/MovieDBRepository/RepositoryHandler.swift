@@ -44,6 +44,8 @@ public class RepositoryHandler: Repository {
                     self.database.fetch(type: Movie.self, predicate: predicate, sorted: nil, completion: { [unowned self] (movieList) in
                         if let movie = movieList?.first {
                             NSLog("title = %@ , id = %ld, pagenumber = %ld", movie.title!, movie.id, pageNumber)
+                            movie.category = category.categoryDescription
+                            movie.creationDate = Date()
                         } else {
                             self.database.createObject(type: Movie.self) { movieObj in
                                 movieObj.category = category.categoryDescription
@@ -79,8 +81,11 @@ public class RepositoryHandler: Repository {
                 }
                 return
             }
+            let movies = movieList.filter({ (movie) -> Bool in
+                movie.posterPath != nil
+            })
             DispatchQueue.main.async {
-                completion(movieList, nil)
+                completion(movies, nil)
             }
         }
     }
@@ -91,11 +96,19 @@ public class RepositoryHandler: Repository {
         switch imageType {
         case .backdropImage:
             filepath = movie.backdropPath
-            endpoint = ImageEndpoint.defaultBackdropURL(filepath!)
+            guard let filepath = filepath else {
+                completion(nil, MoviesError(message: "could not retrieve image data"))
+                return
+            }
+            endpoint = ImageEndpoint.defaultBackdropURL(filepath)
             break
         case .posterImage:
             filepath = movie.posterPath
-            endpoint = ImageEndpoint.defaultPosterURL(filepath!)
+            guard let filepath = filepath else {
+                completion(nil, MoviesError(message: "could not retrieve image data"))
+                return
+            }
+            endpoint = ImageEndpoint.defaultPosterURL(filepath)
             break
         }
         
