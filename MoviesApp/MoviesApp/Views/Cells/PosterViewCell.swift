@@ -17,6 +17,7 @@ class PosterViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        posterImageView.backgroundColor = .lightGray
     }
 
 }

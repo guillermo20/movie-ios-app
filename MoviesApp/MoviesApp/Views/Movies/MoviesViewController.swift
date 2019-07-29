@@ -17,6 +17,8 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     private var moviesList = [Movie]()
     
+    var searchController: UISearchController!
+    
     // repository should be injected with a dependency injector.
     private lazy var presenter = MoviesPresenter(repository: DependencyInjector.dependencies.resolveRepository()
         , category: Category(rawValue: self.tabBarController!.selectedIndex)!)
@@ -33,35 +35,25 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
         self.presenter.fetchMovies()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
-    }
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(true)
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
-    }
-    
     private func setupViews() {
         collectionView.dataSource = self
         collectionView.delegate = self
+        self.title = "The Movie App"
     }
     
     private func setupNavBar() {
-        let searchController = UISearchController(searchResultsController: nil)
-        let searchBar = searchController.searchBar
-        searchBar.delegate = self
-        searchBar.sizeToFit()
-        searchBar.searchBarStyle = .minimal
-        searchBar.placeholder = "Search by movie title"
-        searchBar.tintColor = UIColor.lightGray
-        searchBar.barTintColor = UIColor.lightGray
-        navigationItem.titleView = searchBar
-        searchBar.isTranslucent = true
-        if #available(iOS 11.0, *) {
-            searchBar.heightAnchor.constraint(equalToConstant: 44).isActive = true
+        if searchController == nil {
+            let vc = storyboard?.instantiateViewController(withIdentifier: "SearchMoviesViewController") as! SearchMoviesViewController
+            vc.navController = self.navigationController
+            searchController = UISearchController(searchResultsController: vc)
+            searchController.searchResultsUpdater = vc
+            searchController.searchResultsController?.view.addObserver(self, forKeyPath: "hidden", options: [], context: nil)
+            navigationItem.searchController = searchController
+            searchController.obscuresBackgroundDuringPresentation = false
+            searchController.dimsBackgroundDuringPresentation = false
+            navigationItem.hidesSearchBarWhenScrolling = false
+            definesPresentationContext = true
         }
-//        definesPresentationContext = true
     }
     
     // MARK: Collection delegate functions
@@ -74,7 +66,6 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
         //tags a cell so the images are loaded to the correspondent cell
         cell.tag = indexPath.item
         cell.posterImageView.image = nil
-        NSLog("title = %@ ",  moviesList[indexPath.item].title ?? "novalue")
         if let data = moviesList[indexPath.item].posterImage {
             cell.posterImageView.image = UIImage(data: data)
         } else {
@@ -143,8 +134,42 @@ extension MoviesViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-extension MoviesViewController: UISearchBarDelegate {
+
+extension MoviesViewController: UISearchControllerDelegate {
+    // MARK: UISearchControllerDelegate functions
+    func willPresentSearchController(_ searchController: UISearchController) {
+        searchController.searchResultsController?.view.isHidden = false
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        if (searchText.count == 0) {
+            searchController.searchResultsController?.view.isHidden = false
+        }
+    }
+    
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        NSLog("text being typed %@", searchBar.text ?? "default value")
+        searchController.searchResultsController?.view.isHidden = true
+    }
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        
+        if let someView: UIView = object as! UIView? {
+            
+            if (someView == self.searchController.searchResultsController?.view &&
+                (keyPath == "hidden") &&
+                (searchController.searchResultsController?.view.isHidden)! &&
+                searchController.searchBar.isFirstResponder) {
+                
+                searchController.searchResultsController?.view.isHidden = false
+            }
+            
+        }
     }
 }
+
+
+
+
+
+

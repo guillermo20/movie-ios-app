@@ -13,8 +13,12 @@ public protocol Repository {
     
    
     func fetchTopRatedMovies(pageNumber: Int, completion: @escaping ([Movie]?, Error?) -> Void)
+    
     func fetchPopularMovies(pageNumber: Int, completion: @escaping ([Movie]?, Error?) -> Void)
+    
     func fetchUpcomingMovies(pageNumber: Int, completion: @escaping ([Movie]?, Error?) -> Void)
+    
+    func fetchAllMovies(completion: @escaping ([Movie]?, Error?) -> Void)
     
     // intended to load an image to the movie object being passed as a paremeter
     func fetchMovieImage(movie: Movie, imageType: ImageType, completion: @escaping(Movie?, Error?) -> Void)

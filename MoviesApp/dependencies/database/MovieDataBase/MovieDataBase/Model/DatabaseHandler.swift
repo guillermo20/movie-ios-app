@@ -28,6 +28,11 @@ public struct DatabaseHandler: Storage {
                 try? self.dataController.backgroundContext.save()
             }
         }
+        dataController.viewContext.performAndWait {
+            if self.dataController.viewContext.hasChanges {
+                try? self.dataController.viewContext.save()
+            }
+        }
         DispatchQueue.main.async {
             completion?()
         }

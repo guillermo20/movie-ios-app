@@ -133,6 +133,20 @@ public class RepositoryHandler: Repository {
         fetchMovies(pageNumber: pageNumber, category: MovieEndpoint.upcoming, completion: completion)
     }
     
+    public func fetchAllMovies(completion: @escaping ([Movie]?, Error?) -> Void) {
+        database.fetch(type: Movie.self, predicate: nil, sorted: Sorted(key: "creationDate", ascending: true)) { (movieList) in
+            guard let movieList = movieList else {
+                DispatchQueue.main.async {
+                    completion(nil, MoviesError(message: "could not retrieve data from local store."))
+                }
+                return
+            }
+            DispatchQueue.main.async {
+                completion(movieList, nil)
+            }
+        }
+    }
+    
     // todo: this responsibility should be handled on db not on repository abstraction
     @objc private func appEnteredBackground() {
         NSLog("entered appEnteredBackground")
