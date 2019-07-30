@@ -33,7 +33,7 @@ public class RepositoryHandler: Repository {
     private func fetchMovies(pageNumber: Int, category: Endpoint, completion: @escaping ([Movie]?, Error?) -> Void) {
         let parameters = ParameterBuilder().pageNumber(page: pageNumber).build()
         if service.isConnectedToInternet() {
-            service.loadData(byCategory: category, withResponseType: MoviesResponse.self, withParameters: parameters) { (response, error) in
+            service.loadData(byCategory: category, withResponseType: MoviesResponse.self, withParameters: parameters) { [unowned self] (response, error) in
                 guard let results = response?.results else {
                     NSLog(error!.localizedDescription)
                     self.fetchMoviesFromDatabase(pageNumber: pageNumber, category: category.categoryDescription, completion: completion)
