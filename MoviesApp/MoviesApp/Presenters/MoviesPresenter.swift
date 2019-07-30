@@ -18,10 +18,13 @@ class MoviesPresenter {
     
     private var pageNumber = 1
     
-    private let category: Category
+    private var category: Category?
     
-    init(repository: Repository, category: Category) {
+    init(repository: Repository) {
         self.repository = repository
+    }
+    
+    func setCategory(category: Category) {
         self.category = category
     }
     
@@ -37,15 +40,17 @@ class MoviesPresenter {
             pageNumber = pageNumber + 1
         }
         switch category {
-        case .topRated:
+        case .topRated?:
             fetchTopRatedMovies()
             break
-        case .upcoming:
+        case .upcoming?:
             fetchUpcomingMovies()
             break
-        case .popular:
+        case .popular?:
             fetchPopularMovies()
             break
+        case .none:
+            fetchTopRatedMovies()
         }
     }
     private func fetchTopRatedMovies() {

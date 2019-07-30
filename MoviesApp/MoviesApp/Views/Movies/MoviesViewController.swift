@@ -17,22 +17,25 @@ class MoviesViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     private var moviesList = [Movie]()
     
+    private var isViewInitialized = false
     var searchController: UISearchController!
     
     // repository should be injected with a dependency injector.
-    private lazy var presenter = MoviesPresenter(repository: DependencyInjector.dependencies.resolveRepository()
-        , category: Category(rawValue: self.tabBarController!.selectedIndex)!)
+    private let presenter = MoviesPresenter(repository: DependencyInjector.dependencies.resolveRepository())
     
     // MARK: UIViewController functions
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.presenter.setCategory(category: Category(rawValue: self.tabBarController!.selectedIndex)!)
         self.presenter.setViewDelegate(viewDelegate: self)
+        isViewInitialized = true
+        self.presenter.fetchMovies()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         setupViews()
         setupNavBar()
-        self.presenter.fetchMovies()
+        
     }
     
     private func setupViews() {
