@@ -19,9 +19,15 @@ An app example to showcase the interaction between pod dependencies following th
     - MovieDetailsPresenter
     - SearchMoviesPresenter
     
-  * Repository: This layer leverages all functionality exposed by the lower layers such as the Web Service Client and the Local Database in order to retrieve data from the remote api and then store it locally. through this layer is that the UI will be fed with all the data needed to be displayed to the user.
+  * Repository: This layer leverages all functionality exposed by the lower layers such as the Web Service Client and the Local Database in order to retrieve data from the remote api and then store it locally. through this layer is that the UI will be fed with all the data needed to be displayed to the user, Key components are:
+    
+    ### Protocols
+    - Repository
+    
+    ### Classes
+    - RepositoryHandler
   
-  
+   
   
 ![](movieapp_layer_diagram.png)
 
@@ -35,7 +41,8 @@ An app example to showcase the interaction between pod dependencies following th
   
   
 ## Considerations:
-  
+  - All major components depend upon abstractions(protocols) instead of concretions. (Dependency Inversion principle)
+  - All classes have their own responsability, e.g. WebServiceClient only takes care of interacting with the remote api. (Single Responsiblity principle)
+  - Related to the Open-Close principle, the database module can be extended without modifying the current behavior of the app.
   - This app is _NOT_ optimized for ipads.
-  - Error handling is not being considered that much.
   - Supports default swift 4.0
