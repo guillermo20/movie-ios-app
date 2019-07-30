@@ -43,10 +43,12 @@ public class RepositoryHandler: Repository {
                     let predicate = NSPredicate(format: "id == %ld", remoteMovie.id)
                     self.database.fetch(type: Movie.self, predicate: predicate, sorted: nil, completion: { [unowned self] (movieList) in
                         if let movie = movieList?.first {
-                            NSLog("title = %@ , id = %ld, pagenumber = %ld", movie.title!, movie.id, pageNumber)
+                            // updates the 3 key fields based on the category being requested
                             movie.category = category.categoryDescription
                             movie.creationDate = Date()
+                            movie.pageNumber = Int32(pageNumber)
                         } else {
+                            // creates a new object if it doesn't exist in the local storage.
                             self.database.createObject(type: Movie.self) { movieObj in
                                 movieObj.category = category.categoryDescription
                                 movieObj.backdropPath = remoteMovie.backdropPath

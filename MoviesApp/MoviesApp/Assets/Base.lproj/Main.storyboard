@@ -210,11 +210,11 @@
             </objects>
             <point key="canvasLocation" x="-412" y="106"/>
         </scene>
-        <!--Movies-->
+        <!--Top Rated-->
         <scene sceneID="vAI-Wv-eU9">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nwE-xf-0D5" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Movies" image="movies" id="kTi-RK-9g9"/>
+                    <tabBarItem key="tabBarItem" title="Top Rated" image="movies" id="kTi-RK-9g9"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="QHj-fS-No5">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
