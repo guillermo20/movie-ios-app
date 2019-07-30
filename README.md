@@ -31,7 +31,7 @@ An app example to showcase the interaction between pod dependencies following th
   
 ## How to run the app:
 
-  Easy, just download this repository, and then run _pod install_ on a command line terminal. then you should be able to open the workcpace of the project an run in on a Device or Simulator.
+  Easy, just download this repository, and then run _pod install_ on a command line terminal. then you should be able to open the workspace of the project an run in on a Device or Simulator.
   
   
 ## Considerations:
