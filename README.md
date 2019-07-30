@@ -36,6 +36,6 @@ An app example to showcase the interaction between pod dependencies following th
   
 ## Considerations:
   
-  - This app is optimized for ipads.
+  - This app is _NOT_ optimized for ipads.
   - Error handling is not being considered that much.
   - Supports default swift 4.0
