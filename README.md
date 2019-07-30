@@ -27,7 +27,7 @@ An app example to showcase the interaction between pod dependencies following th
 
 ## Dependencies:
   
-  All dependencies are tied together through a small protocol-oriented dependency injector. located on the DI folder/Group of the main MoviesApp project. This help us to inject fresh inmmutable dendencies to the presenters and repository instances.
+  All dependencies are tied together through a small protocol-oriented dependency injector. located on the DI folder/Group of the main MoviesApp project. This help us to inject fresh inmmutable denpencies to the presenters and repository instances.
   
 ## How to run the app:
 
